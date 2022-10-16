@@ -1,0 +1,33 @@
+.nav-bar {
+  /* border: 1px solid red; */
+}
+.nav-bar .title {
+  /* border: 1px solid red; */
+  position: relative;
+  padding-top: 4rpx;
+  
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar .title .logo {
+  width: 46rpx;
+  height: 46rpx;
+}
+
+.nav-bar .title .text {
+  margin-left: 6rpx;
+  font-weight: 600;
+  letter-spacing: -0.8px;
+}
+
+.nav-bar .search {
+  width: 38rpx;
+  height: 38rpx;
+  /* padding: 4px;
+  border: 1px solid #ddd;
+  border-radius: 50%; */
+
+  position: absolute;
+  right: 25px;
+}
