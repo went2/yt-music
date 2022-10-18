@@ -10,6 +10,6 @@ interface IAppOption {
       menuHeight: number, // 胶囊高度
       menuWidth: number,
     }
-  }
+  } | any
   userInfoReadyCallback?: WechatMiniprogram.GetUserInfoSuccessCallback,
 }

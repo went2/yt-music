@@ -1,0 +1,39 @@
+.title {
+  display: flex;  
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 22rpx;
+}
+
+.title .left {
+  /* border: 1px solid red; */
+  max-width: 75%;
+}
+
+.title .desc {
+  font-size: 26rpx;
+  margin-left: 4rpx;
+  color: #676767;
+}
+
+.title .text {
+  margin-top: 4rpx;
+  font-size: 42rpx;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+
+  /* 限制两行显示 */
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.title .right .btn {
+  border: 1px solid #aaa;
+  background-color: #f7f8f9;
+  padding: 5rpx 15rpx;
+  border-radius: 15px;
+  font-size: 24rpx;
+  letter-spacing: 0.8px;
+}

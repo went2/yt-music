@@ -3,7 +3,6 @@
   <view class="title" style="line-height:{{menuHeight}}px;top:{{menuTop}}px;padding-left: {{menuRight}}px;margin-right: {{menuWidth+menuRight}}px;">
     <image class="logo" src="../../assets/images/logo/youtube-music2-144.png" />
     <text class="text">Music</text>
-    <image class="search" src="../../assets/images/icons/search-144.png" alt=""/>
+    <image class="search" src="../../assets/images/icons/search-144.png" alt="" bindtap="onSearchTab"/>
   </view>
-  
 </view> 

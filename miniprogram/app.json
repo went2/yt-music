@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/home/home",
+    "pages/index/index",
     "pages/explore/explore",
     "pages/library/library"
   ],
@@ -15,7 +15,7 @@
     "selectedColor": "#000",
     "list": [
       {
-        "pagePath": "pages/home/home",
+        "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "assets/images/icons/home_normal.png",
         "selectedIconPath": "assets/images/icons/home_active.png"

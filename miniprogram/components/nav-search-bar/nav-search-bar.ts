@@ -14,6 +14,8 @@ Component({
   },
 
   methods: {
-
+    onSearchTab() {
+      this.triggerEvent('search-tap');
+    }
   }
 })

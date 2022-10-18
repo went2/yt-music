@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "nav-search-bar": "../../components/nav-search-bar/nav-search-bar",
+    "cat-list": "./components/cat-list/cat-list",
+    "card-list-view": "../../components/card-list-view/card-list-view"
+  },
+  "navigationStyle": "custom"
+}

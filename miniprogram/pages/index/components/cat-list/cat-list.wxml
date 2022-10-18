@@ -1,0 +1,17 @@
+<scroll-view
+  class="cat-list"
+  scroll-x
+  style="width: {{screenWidth}}px;"
+>
+  <block wx:for="{{listData}}" wx:key="text">
+    <view
+      class="item {{ isActive === index ? 'active' : '' }}"
+      bind:tap="setActive"
+      data-key="{{index}}"
+    >
+      {{item.text}}
+    </view>
+  </block>
+</scroll-view>
+
+

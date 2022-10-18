@@ -1,0 +1,8 @@
+<nav-search-bar bind:search-tap="onSeachTap" />
+<cat-list listData="{{catList}}" bind:click-cat="onClickCat" />
+
+<card-list-view
+  isShowMore
+  titleText="为你推荐"
+  listData="{{personalizedListSliced}}"
+/>
