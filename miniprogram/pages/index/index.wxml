@@ -1,8 +1,12 @@
 <nav-search-bar bind:search-tap="onSeachTap" />
 <cat-list listData="{{catList}}" bind:click-cat="onClickCat" />
 
-<card-list-view
-  isShowMore
-  titleText="为你推荐"
-  listData="{{personalizedListSliced}}"
+<!-- <card-list-view isShowMore titleText="为你推荐"
+  listData="{{personalizedList}}" bind:click-item="onClickItem"
+/>
+
+<video-list-view titleText="推荐MV" listData="{{videoList}}" bind:click-item="onClickItem" /> -->
+
+<music-list-view isShowDesc titleText="选首听听看" titleDesc="一曲入魂"
+  listData="{{songList}}"
 />

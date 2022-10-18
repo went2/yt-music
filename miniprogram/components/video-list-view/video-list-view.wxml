@@ -1,15 +1,19 @@
-<view class="card-list__wrapper">
+<wxs module="format" src="../../utils/format.wxs"></wxs>
+
+<view class="video-list__wrapper">
   <section-title
     isShowMore="{{isShowMore}}" isShowDesc="{{isShowDesc}}"
     titleDesc="{{titleDesc}}" titleText="{{titleText}}"
     bind:click-more="onClickMore"
   />
-  <!-- card list -->
-  <scroll-view class="list" scroll-x enable-flex style="width: {{screenWidth}}px;">
+
+    <!-- video list -->
+    <scroll-view class="list" scroll-x enable-flex style="width: {{screenWidth}}px;">
     <block wx:for="{{listData}}" wx:key="id">
       <view class="item" bindtap="onClickItem" data-id="{{item.id}}">
-        <image class="pic" src="{{item.picUrl}}" mode="scaleToFill"></image>
+        <image class="pic" src="{{item.cover}}" mode="scaleToFill"></image>
         <view class="text">{{item.name}}</view>
+        <view class="text2">{{item.artistName}} · {{format.formatCount(item.playCount)}}播放</view>
       </view>
     </block>
   </scroll-view>

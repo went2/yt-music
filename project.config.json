@@ -11,6 +11,8 @@
     "useCompilerPlugins": [
       "typescript"
     ],
+    "ignoreDevUnusedFiles": true,
+    "ignoreUploadUnusedFiles": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],

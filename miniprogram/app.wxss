@@ -3,6 +3,13 @@ page {
   padding: 0 15px;
 }
 
+::-webkit-scrollbar {
+  display: none;
+  width:0;
+  height:0;
+  color:transparent;
+}
+
 /* .container {
   height: 100%;
   display: flex;

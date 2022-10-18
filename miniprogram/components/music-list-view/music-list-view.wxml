@@ -1,0 +1,13 @@
+<view class="music-list__wrapper">
+  <section-title
+    isShowMore="{{isShowMore}}" isShowDesc="{{isShowDesc}}"
+    titleDesc="{{titleDesc}}" titleText="{{titleText}}"
+    bind:click-more="onClickMore"
+  />
+  <!-- song column list -->
+  <scroll-view class="list" scroll-x enable-flex style="width: {{screenWidth}}px;">
+    <block wx:for="{{listData}}" wx:key="index">
+      <song-column class="item" songGroup="{{item}}" />
+    </block>
+  </scroll-view>
+</view>

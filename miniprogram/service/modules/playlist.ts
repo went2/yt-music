@@ -13,3 +13,18 @@ export function getPersonalizedList() {
     url: '/personalized?limit=20'
   })
 }
+
+export function getRecommentMv() {
+  return req.get({
+    url: "/top/mv?limit=10"
+  })
+}
+
+export function getPlaylistDetail(id: number) {
+  return req.get({
+    url: "/playlist/detail",
+    data: {
+      id
+    }
+  })
+}

@@ -1,0 +1,38 @@
+.list {
+  margin-left: 1rpx;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  margin: 15rpx 0;
+  position: relative;
+}
+
+.item .pic {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+}
+
+.item .info {
+  margin-left: 15rpx;
+}
+
+.info .name {
+  font-weight: 700;
+  font-size: 28rpx;
+}
+
+.info .singer {
+  margin-top: 6rpx;
+  font-size: 26rpx;
+  color: #666
+}
+
+.item .icon {
+  width: 38rpx;
+  height: 38rpx;
+  position: absolute;
+  right: 50rpx;
+}

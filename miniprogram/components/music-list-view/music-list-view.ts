@@ -23,6 +23,6 @@ Component({
       this.setData({ screenWidth: app.globalData.screenWidth })
     }
   }
-})
+});
 
 export {}

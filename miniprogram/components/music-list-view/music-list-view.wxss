@@ -1,0 +1,22 @@
+.music-list__wrapper {
+  margin-top: 40rpx;
+}
+
+.list {
+  margin-top: 20rpx;
+  margin-left: -14px;
+  white-space: nowrap;
+  justify-content: space-between;
+}
+
+.list .item {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 8px;
+  width: 85%;
+  /* border: 1px solid gold; */
+}
+
+.list .item:last-of-type {
+  margin-right: 15rpx;
+}

@@ -9,7 +9,7 @@ Component({
   },
   data: {
     screenWidth: 375
-  },
+  },  
   methods: {
     onClickMore() {
       this.triggerEvent('click-more');
@@ -23,6 +23,6 @@ Component({
       this.setData({ screenWidth: app.globalData.screenWidth })
     }
   }
-})
+});
 
 export {}

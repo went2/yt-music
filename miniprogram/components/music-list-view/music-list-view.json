@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "section-title": "../section-title/section-title",
+    "song-column": "./components/song-column/song-column"
+  }
+}

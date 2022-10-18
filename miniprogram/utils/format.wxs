@@ -1,0 +1,14 @@
+function formatCount(count) {
+  var numCount = parseInt(count);
+  if(numCount >= 100000000) {
+    return (numCount/100000000).toFixed(1) + '亿';
+  } else if (numCount >= 10000) {
+    return (numCount/10000).toFixed(1) + '万';
+  } else {
+    return numCount;
+  }
+}
+
+module.exports = {
+  formatCount: formatCount
+}
