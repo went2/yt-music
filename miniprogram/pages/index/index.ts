@@ -7,21 +7,26 @@ Page({
     catList: [],
     personalizedList: [],
     videoList: [],
-    songList: []
+    songList: [],
+    newReleaseList: []
   },
   onLoad() {
     this.setMetaCat();
     recommendStore.onState('personalizedList', this.setPersonalizedList);
-    recommendStore.dispatch('fetchPersonalizedList');
     recommendStore.onState('recommendMv', this.setRecommendMv);
-    recommendStore.dispatch('fetchRecommendMv');
     recommendStore.onState('recommendSongs', this.setRecommendSongs);
+    recommendStore.onState('newRelease', this.setNewRelease);
+
+    recommendStore.dispatch('fetchPersonalizedList');
+    recommendStore.dispatch('fetchRecommendMv');
     recommendStore.dispatch('fetchRecommendSongs');
+    recommendStore.dispatch('fetchNewRelease');
   },
   onUnload() {
     recommendStore.offState('personalizedList', this.setPersonalizedList);
     recommendStore.offState('recommendMv', this.setRecommendMv);
     recommendStore.offState('recommendSongs', this.setRecommendSongs);
+    recommendStore.offState('newRelease', this.setNewRelease);
   },
 
   onSeachTap() {
@@ -50,6 +55,8 @@ Page({
   setRecommendSongs(value: any) {
     const list = value.slice(0,16);
     this.setData({ songList: group(list, 4) as never[] });
-    console.log(this.data.songList);
   },
+  setNewRelease(value: any) {
+    this.setData({ newReleaseList: value.slice(0,10) });
+  }
 });

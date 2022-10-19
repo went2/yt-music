@@ -4,10 +4,13 @@
     titleDesc="{{titleDesc}}" titleText="{{titleText}}"
     bind:click-more="onClickMore"
   />
+
   <!-- song column list -->
-  <scroll-view class="list" scroll-x enable-flex style="width: {{screenWidth}}px;">
+  <swiper class="list" style="width: {{screenWidth}}px;">
     <block wx:for="{{listData}}" wx:key="index">
-      <song-column class="item" songGroup="{{item}}" />
+      <swiper-item class="item">
+        <song-column class="song-column" songGroup="{{item}}" />
+      </swiper-item>
     </block>
-  </scroll-view>
+  </swiper>
 </view>

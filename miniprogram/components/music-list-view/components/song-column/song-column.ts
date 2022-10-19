@@ -6,5 +6,9 @@ Component({
       value: []
     }
   },
+  lifetimes: {
+  },
+  methods: {
+  }
 
 })

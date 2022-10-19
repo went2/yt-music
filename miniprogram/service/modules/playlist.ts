@@ -28,3 +28,9 @@ export function getPlaylistDetail(id: number) {
     }
   })
 }
+
+export function getNewRelease() {
+  return req.get({
+    url: "/album/newest"
+  });
+}

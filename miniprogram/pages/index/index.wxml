@@ -1,12 +1,16 @@
 <nav-search-bar bind:search-tap="onSeachTap" />
 <cat-list listData="{{catList}}" bind:click-cat="onClickCat" />
 
-<!-- <card-list-view isShowMore titleText="为你推荐"
+<card-list-view isShowMore titleText="推荐歌单"
   listData="{{personalizedList}}" bind:click-item="onClickItem"
 />
 
-<video-list-view titleText="推荐MV" listData="{{videoList}}" bind:click-item="onClickItem" /> -->
-
-<music-list-view isShowDesc titleText="选首听听看" titleDesc="一曲入魂"
-  listData="{{songList}}"
+<music-list-view isShowDesc titleText="选首听听看" titleDesc="一曲入魂" listData="{{songList}}"
 />
+
+<video-list-view titleText="推荐MV" listData="{{videoList}}" bind:click-item="onClickItem" />
+
+<card-list-view isShowMore titleText="新发专辑"
+  listData="{{newReleaseList}}" bind:click-item="onClickItem"
+/>
+

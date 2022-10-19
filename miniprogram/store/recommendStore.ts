@@ -1,13 +1,14 @@
 import EventStore from './event-store/event-store';
 import { 
-  getPersonalizedList, getRecommentMv, getPlaylistDetail
+  getPersonalizedList, getRecommentMv, getPlaylistDetail, getNewRelease
 } from '../service/modules/playlist';
 
 const recommendStore = new EventStore({
   state: {
     personalizedList: [],
     recommendMv: [],
-    recommendSongs: []
+    recommendSongs: [],
+    newRelease: []
   },
   actions: {
     fetchPersonalizedList(ctx: any) {
@@ -24,6 +25,11 @@ const recommendStore = new EventStore({
       // 热门歌曲榜单详情
       getPlaylistDetail(3778678).then((res:any) => {
         ctx.recommendSongs = res.playlist.tracks;
+      })
+    },
+    fetchNewRelease(ctx: any) {
+      getNewRelease().then((res: any) => {
+        ctx.newRelease = res.albums;
       })
     }
   }

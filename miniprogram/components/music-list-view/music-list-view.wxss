@@ -7,6 +7,8 @@
   margin-left: -14px;
   white-space: nowrap;
   justify-content: space-between;
+  height: 400rpx;
+  /* border: 1px solid red; */
 }
 
 .list .item {
