@@ -1,15 +1,16 @@
 {
-  "name": "miniprogram-ts-less-quickstart",
+  "name": "yt-music",
   "version": "1.0.0",
-  "description": "",
-  "scripts": {
-  },
+  "description": "light mode of youtube music",
+  "scripts": {},
   "keywords": [],
-  "author": "",
-  "license": "",
-  "dependencies": {
-  },
+  "author": "sf",
+  "license": "ISC",
   "devDependencies": {
     "miniprogram-api-typings": "^2.8.3-1"
+  },
+  "main": "",
+  "dependencies": {
+    "sf-miniprogram-navbar": "^1.0.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "nav-search-bar": "../../components/nav-search-bar/nav-search-bar",
+    "nav-search-bar": "../../miniprogram_npm/sf-miniprogram-navbar/nav-search-bar",
     "cat-list": "./components/cat-list/cat-list",
     "playlist-view": "../../components/playlist-view/playlist-view",
     "video-list-view": "../../components/video-list-view/video-list-view",

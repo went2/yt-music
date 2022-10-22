@@ -64,7 +64,7 @@ Component({
         data: navBarInfo
       });
     },
-    setNavBarInfo(navBarInfo: any) {
+    setNavBarInfo(navBarInfo) {
       this.setData({ 
         navBarHeight: navBarInfo.navBarHeight,
         menuRight: navBarInfo.menuRight,

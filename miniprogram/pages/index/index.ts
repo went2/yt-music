@@ -37,6 +37,9 @@ Page({
     recommendStore.offState('newRelease', this.setNewRelease);
     recommendStore.offState('officialRecommend', this.setOfficialRecommend)
   },
+  onPageScroll() {
+    console.log("scrollin~")
+  },
 
   onSeachTap() {
     console.log('home: click search');

@@ -1,4 +1,10 @@
-<nav-search-bar bind:search-tap="onSeachTap" />
+<nav-search-bar
+  title="YT Music"
+  logoImg="../../assets/images/logo/youtube-music2-144.png"
+  bind:tap-search="onSeachTap"
+>
+</nav-search-bar>
+
 <cat-list listData="{{catList}}" bind:click-cat="onClickCat" />
 
 <playlist-view isShowMore titleText="推荐歌单"
