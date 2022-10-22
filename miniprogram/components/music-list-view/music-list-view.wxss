@@ -1,5 +1,5 @@
 .music-list__wrapper {
-  margin-top: 40rpx;
+  margin-top: 50rpx;
 }
 
 .list {

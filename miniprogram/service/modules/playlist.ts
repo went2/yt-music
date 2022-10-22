@@ -34,3 +34,9 @@ export function getNewRelease() {
     url: "/album/newest"
   });
 }
+
+export function getOfficialRecommend() {
+  return req.get({
+    url: "/mv/exclusive/rcmd"
+  });
+}

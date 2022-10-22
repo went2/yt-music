@@ -2,9 +2,10 @@
   "usingComponents": {
     "nav-search-bar": "../../components/nav-search-bar/nav-search-bar",
     "cat-list": "./components/cat-list/cat-list",
-    "card-list-view": "../../components/card-list-view/card-list-view",
+    "playlist-view": "../../components/playlist-view/playlist-view",
     "video-list-view": "../../components/video-list-view/video-list-view",
-    "music-list-view": "../../components/music-list-view/music-list-view"
+    "music-list-view": "../../components/music-list-view/music-list-view",
+    "section-title": "../../components/section-title/section-title"
   },
   "navigationStyle": "custom"
 }

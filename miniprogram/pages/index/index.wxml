@@ -1,16 +1,33 @@
 <nav-search-bar bind:search-tap="onSeachTap" />
 <cat-list listData="{{catList}}" bind:click-cat="onClickCat" />
 
-<card-list-view isShowMore titleText="推荐歌单"
+<playlist-view isShowMore titleText="推荐歌单"
   listData="{{personalizedList}}" bind:click-item="onClickItem"
 />
 
-<music-list-view isShowDesc titleText="选首听听看" titleDesc="一曲入魂" listData="{{songList}}"
+<music-list-view isShowDesc titleText="选首听听看" titleDesc="一首歌曲，进入情境" listData="{{songList}}"
 />
 
 <video-list-view titleText="推荐MV" listData="{{videoList}}" bind:click-item="onClickItem" />
 
-<card-list-view isShowMore titleText="新发专辑"
+<playlist-view isShowMore titleText="新发专辑"
   listData="{{newReleaseList}}" bind:click-item="onClickItem"
 />
 
+<video-list-view
+  titleText="网易出品"
+  titleDesc="官方推荐，快来看哪"
+  isShowMore
+  listData="{{officialRecommentList}}"
+  bind:click-item="onClickItem"
+/>
+
+<section-title titleText="探索" />
+<view class="explore">
+  <block wx:for="{{exploreData}}" wx:key="key">
+    <view class="item">
+      <image class="icon-pic" src="{{item.iconUrl}}"></image>
+      <view class="text">{{item.title}}</view>
+    </view>
+  </block>
+</view>

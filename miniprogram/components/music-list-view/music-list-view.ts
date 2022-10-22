@@ -4,7 +4,7 @@ Component({
     isShowMore: { type: Boolean, value: false },
     isShowDesc: { type: Boolean, value: false },
     titleText: { type: String, value: '这是标题' },
-    titleDesc: { type: String, value: '这是描述' },
+    titleDesc: { type: String, value: '' },
     listData: { type: Array, value: [] }
   },
   data: {

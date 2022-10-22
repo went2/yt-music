@@ -1,6 +1,6 @@
 <view class="title">
   <view class="left">
-    <view class="desc" wx:if="{{ isShowDesc }}">{{ titleDesc }}</view>
+    <view class="desc" wx:if="{{ showDesc }}">{{ titleDesc }}</view>
     <view class="text">{{ titleText }}</view>
   </view>
   <view class="right" wx:if="{{isShowMore}}">

@@ -1,10 +1,10 @@
-<view class="card-list__wrapper">
+<view class="playlist__wrapper">
   <section-title
     isShowMore="{{isShowMore}}" isShowDesc="{{isShowDesc}}"
     titleDesc="{{titleDesc}}" titleText="{{titleText}}"
     bind:click-more="onClickMore"
   />
-  <!-- card list -->
+  <!-- play list -->
   <scroll-view class="list" scroll-x enable-flex style="width: {{screenWidth}}px;">
     <block wx:for="{{listData}}" wx:key="id">
       <view class="item" bindtap="onClickItem" data-id="{{item.id}}">

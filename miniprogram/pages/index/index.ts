@@ -8,7 +8,13 @@ Page({
     personalizedList: [],
     videoList: [],
     songList: [],
-    newReleaseList: []
+    newReleaseList: [],
+    officialRecommentList:[],
+    exploreData: [
+      { iconUrl: "../../assets/images/icons/home-explore/new-release.png", title: "新发专辑" },
+      { iconUrl: "../../assets/images/icons/home-explore/charts.png", title: "排行榜" },
+      { iconUrl: "../../assets/images/icons/home-explore/moods.png", title: "分类听歌" }
+    ]
   },
   onLoad() {
     this.setMetaCat();
@@ -16,17 +22,20 @@ Page({
     recommendStore.onState('recommendMv', this.setRecommendMv);
     recommendStore.onState('recommendSongs', this.setRecommendSongs);
     recommendStore.onState('newRelease', this.setNewRelease);
+    recommendStore.onState('officialRecommend', this.setOfficialRecommend)
 
     recommendStore.dispatch('fetchPersonalizedList');
     recommendStore.dispatch('fetchRecommendMv');
     recommendStore.dispatch('fetchRecommendSongs');
     recommendStore.dispatch('fetchNewRelease');
+    recommendStore.dispatch('fetchOfficialRecommend');
   },
   onUnload() {
     recommendStore.offState('personalizedList', this.setPersonalizedList);
     recommendStore.offState('recommendMv', this.setRecommendMv);
     recommendStore.offState('recommendSongs', this.setRecommendSongs);
     recommendStore.offState('newRelease', this.setNewRelease);
+    recommendStore.offState('officialRecommend', this.setOfficialRecommend)
   },
 
   onSeachTap() {
@@ -58,5 +67,8 @@ Page({
   },
   setNewRelease(value: any) {
     this.setData({ newReleaseList: value.slice(0,10) });
+  },
+  setOfficialRecommend(value: any) {
+    this.setData({ officialRecommentList: value.slice(0,10) });
   }
 });

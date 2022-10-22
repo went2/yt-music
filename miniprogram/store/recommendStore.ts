@@ -1,6 +1,7 @@
 import EventStore from './event-store/event-store';
 import { 
-  getPersonalizedList, getRecommentMv, getPlaylistDetail, getNewRelease
+  getPersonalizedList, getRecommentMv, getPlaylistDetail, getNewRelease,
+  getOfficialRecommend
 } from '../service/modules/playlist';
 
 const recommendStore = new EventStore({
@@ -8,7 +9,8 @@ const recommendStore = new EventStore({
     personalizedList: [],
     recommendMv: [],
     recommendSongs: [],
-    newRelease: []
+    newRelease: [],
+    officialRecommend: []
   },
   actions: {
     fetchPersonalizedList(ctx: any) {
@@ -25,12 +27,19 @@ const recommendStore = new EventStore({
       // 热门歌曲榜单详情
       getPlaylistDetail(3778678).then((res:any) => {
         ctx.recommendSongs = res.playlist.tracks;
+      }).catch(e => {
+        console.error('获取热门单曲失败', e);
       })
     },
     fetchNewRelease(ctx: any) {
       getNewRelease().then((res: any) => {
         ctx.newRelease = res.albums;
       })
+    },
+    fetchOfficialRecommend(ctx: any) {
+      getOfficialRecommend().then((res: any) => {
+        ctx.officialRecommend = res.data;
+      });
     }
   }
 });

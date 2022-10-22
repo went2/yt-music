@@ -1,1 +1,27 @@
 /* pages/home/home.wxss */
+
+.explore {
+  display: flex;
+  padding-bottom: 30rpx;
+  justify-content: space-between;
+}
+
+.explore .item {
+  box-sizing: border-box;
+  border: 1px solid #eee;
+  background-color: rgba(244, 244, 244, .6);
+  border-radius: 20rpx;
+  width: 30%;
+  padding: 20rpx;
+}
+
+.explore .icon-pic {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.explore .text {
+  margin-top: 16rpx;
+  font-weight: 700;
+  font-size: 30rpx;
+}
