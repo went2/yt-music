@@ -52,6 +52,11 @@ Page({
     // detail 是歌单id
     console.log(event.detail)
   },
+  onClickPlayListMore() {
+    wx.navigateTo({
+      url: '/pages/detail-playlist/detail-playlist'
+    })
+  },
 
   async setMetaCat() {
     const res = await getMetaCat();

@@ -5,5 +5,18 @@
     "compileHotReLoad": true,
     "urlCheck": false
   },
-  "libVersion": "2.15.0"
+  "libVersion": "2.15.0",
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "detail-playlist",
+          "pathName": "pages/detail-playlist/detail-playlist",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

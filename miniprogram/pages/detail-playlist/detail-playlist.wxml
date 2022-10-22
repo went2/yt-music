@@ -1,0 +1,13 @@
+<!--pages/detail-playlist/detail-playlist.wxml-->
+<view class="list">
+    <block wx:for="{{ listData }}" wx:key="id">
+    <view class="item" bindtap="onClickItem" data-id="{{item.id}}">
+      <image class="pic" src="{{item.picUrl}}" mode="scaleToFill"></image>
+      <view class="text">{{item.name}}</view>
+      <view class="info" wx:if="{{item.artist}}">
+        <text wx:if="{{item.type}}">{{item.type}} - </text>
+        <text>{{item.artist.name}}</text>
+      </view>
+    </view>
+  </block>
+</view>

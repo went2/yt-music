@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/explore/explore",
-    "pages/library/library"
+    "pages/library/library",
+    "pages/detail-playlist/detail-playlist"
   ],
   "window": {
     "backgroundTextStyle": "light",

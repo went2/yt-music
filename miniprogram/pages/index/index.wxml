@@ -2,13 +2,14 @@
   title="YT Music"
   logoImg="../../assets/images/logo/youtube-music2-144.png"
   bind:tap-search="onSeachTap"
->
-</nav-search-bar>
+/>
 
 <cat-list listData="{{catList}}" bind:click-cat="onClickCat" />
 
 <playlist-view isShowMore titleText="推荐歌单"
-  listData="{{personalizedList}}" bind:click-item="onClickItem"
+  listData="{{personalizedList}}"
+  bind:click-item="onClickItem"
+  bind:click-more="onClickPlayListMore"
 />
 
 <music-list-view isShowDesc titleText="选首听听看" titleDesc="一首歌曲，进入情境" listData="{{songList}}"
