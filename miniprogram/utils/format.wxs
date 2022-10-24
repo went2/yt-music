@@ -9,6 +9,19 @@ function formatCount(count) {
   }
 }
 
+// 秒 转 mm::ss
+function formatDuration(millisecond) {
+  var totalSeconds = Math.round(millisecond / 1000);
+  var m = Math.floor(totalSeconds / 60);
+  var s = totalSeconds % 60;
+  m = m + '';
+  s = s + '';
+  m = (m.length == 1) ? '0'+ m : m;
+  s = (s.length == 1) ? '0'+ s : s;
+  return m + ':' + s;
+}
+
 module.exports = {
-  formatCount: formatCount
+  formatCount: formatCount,
+  formatDuration: formatDuration
 }

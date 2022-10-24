@@ -2,14 +2,35 @@
 <image class="bg" src="{{detail.coverImgUrl}}"></image>
 <view class="bg-cover"></view>
 
-<nav-bar title="专辑详情"></nav-bar>
+<nav-bar title="专辑详情" bind:tap-left="onTapLeft"></nav-bar>
 
 <view class="info">
   <image class="cover" src="{{detail.coverImgUrl}}" mode="widthFix"></image>
-  <view class="name">{{ detail.name }}</view>
-  <view class="description">{{ detail.description }}</view>
+  <view class="name two-line">{{ detail.name }}</view>
+  <view class="description two-line">{{ detail.description }}</view>
 </view>
 
-<view class="controller"></view>
+<view class="controller">
+  <view>
+    <image class="download" src="../../assets/images/icons/playlist-detail/download.png"></image>
+  </view>
+  <view>
+    <image class="collect" src="../../assets/images/icons/playlist-detail/add-new.png"></image>
+  </view>
+  <view class="play">
+    <image class="play-icon" src="../../assets/images/icons/playlist-detail/play.png"></image>
+  </view>
+  <view>
+    <image class="share" src="../../assets/images/icons/playlist-detail/share.png"></image>
+  </view>
 
-<view class="song-list"></view>
+  <view>
+    <image class="more" src="../../assets/images/icons/playlist-detail/more.png"></image>
+  </view>
+</view>
+
+<view class="song-list">
+  <block wx:for="{{detail.tracks}}" wx:key="id">
+    <song-item item="{{item}}" />
+  </block>
+</view>

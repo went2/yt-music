@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "nav-bar": "../../components/nav-bar/nav-bar"
+    "nav-bar": "../../components/nav-bar/nav-bar",
+    "song-item": "../../components/song-item/song-item"
   },
   "navigationStyle": "custom"
 }

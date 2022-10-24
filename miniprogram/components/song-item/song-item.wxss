@@ -1,0 +1,43 @@
+
+.item {
+  display: flex;
+  align-items: center;
+  margin: 20rpx 0;
+  position: relative;
+}
+
+.item .pic {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+}
+
+.item .info {
+  margin-left: 15rpx;
+  max-width: 70%;
+}
+
+.info .name {
+  font-weight: 700;
+  font-size: 28rpx;
+  color: #fff;
+}
+
+.info .singer {
+  margin-top: 6rpx;
+  font-size: 26rpx;
+  color: #ddd;
+  display: flex;
+  
+}
+
+.singer .duration {
+  margin-left: 10rpx;
+}
+
+.item .icon {
+  width: 38rpx;
+  height: 38rpx;
+  position: absolute;
+  right: 50rpx;
+}

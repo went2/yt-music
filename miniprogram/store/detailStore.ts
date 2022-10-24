@@ -10,11 +10,8 @@ const detailStore = new EventStore({
   actions: {
     fetchPlaylistDetail(ctx: any, id: string) {
       const paramId = Number(id);
-      
       getPlaylistDetail(paramId).then((res: any) => {
         ctx.playlistDetail = res.playlist;
-        console.log(res.playlist);
-        
       }).catch(e => {
         console.log('获取歌单详情失败', e);
       })

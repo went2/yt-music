@@ -13,6 +13,9 @@ Page({
 
     detailStore.dispatch('fetchPlaylistDetail', this.data.id);
   },
+  onTapLeft(){
+    wx.navigateBack();
+  },
   setPlaylistDetail(value: any) {
     this.setData({
       detail: value

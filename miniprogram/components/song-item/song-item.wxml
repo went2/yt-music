@@ -1,0 +1,13 @@
+<wxs module="format" src="../../utils/format.wxs"></wxs>
+
+<view class="item">
+  <image class="pic" src="{{item.al.picUrl}}"></image>
+  <view class="info">
+    <view class="name">{{item.name}}</view>
+    <view class="singer">
+      <view>{{item.ar[0].name}}</view>
+      <text wx:if="{{item.dt}}" class="duration"> · {{ format.formatDuration(item.dt) }}</text>
+    </view>
+  </view>
+  <image class="icon" src="../../assets/images/icons/arrow.png"></image>
+</view>
