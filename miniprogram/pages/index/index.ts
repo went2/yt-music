@@ -77,9 +77,13 @@ Page({
     // detail 是catList中的index
     console.log(event.detail)
   },
-  onClickItem(event: WechatMiniprogram.CustomEvent) {
+  onClickPlaylistItem(event: WechatMiniprogram.CustomEvent) {
     // detail 是歌单id
     console.log(event.detail)
+    const id = event.detail;
+    wx.navigateTo({
+      url: `/pages/detail-playlist-item/detail-playlist-item?id=${id}`
+    })
   },
   onClickPlayListMore() {
     wx.navigateTo({

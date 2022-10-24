@@ -15,7 +15,7 @@
 
 <playlist-view isShowMore titleText="推荐歌单"
   listData="{{personalizedList}}"
-  bind:click-item="onClickItem"
+  bind:click-item="onClickPlaylistItem"
   bind:click-more="onClickPlayListMore"
 />
 

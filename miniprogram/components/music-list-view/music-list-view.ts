@@ -18,7 +18,7 @@ Component({
       this.triggerEvent('click-item', event.currentTarget.dataset.id);
     },
     onAttached() {
-      console.log('song-column attaehed=>');
+      // console.log('song-column attaehed=>');
 
       setTimeout(()=>{
         const query = wx.createSelectorQuery();
@@ -28,7 +28,6 @@ Component({
         })
       }, 0)
       
-
     }
   },
   lifetimes: {
