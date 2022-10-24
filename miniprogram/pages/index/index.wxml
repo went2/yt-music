@@ -4,6 +4,8 @@
   bind:tap-search="onSeachTap"
 />
 
+<view class="{{ stickyWidth ? 'cate-bg' : '' }}"></view>
+
 <cat-list
   class="cate-list"
   listData="{{catList}}"

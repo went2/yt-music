@@ -6,7 +6,7 @@ import { throttle } from 'underscore';
 const app = getApp();
 
 const setStickyWidthThrottled = throttle((scrollTop: number, func: (isSet: number) => void, top:number) => {
-  if(scrollTop > 44) {
+  if(scrollTop > top) {
     func(1);
   } else {
     func(0);
