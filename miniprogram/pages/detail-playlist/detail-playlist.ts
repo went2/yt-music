@@ -8,7 +8,9 @@ Page({
   },
   onClickItem(event: WechatMiniprogram.CustomEvent) {
     const id = event.currentTarget.dataset.id;
-    
+    wx.navigateTo({
+      url: `/pages/detail-playlist-item/detail-playlist-item?id=${id}`
+    })
   },
   onPullDownRefresh() {
 

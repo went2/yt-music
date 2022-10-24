@@ -4,7 +4,12 @@
   bind:tap-search="onSeachTap"
 />
 
-<cat-list listData="{{catList}}" bind:click-cat="onClickCat" />
+<cat-list
+  class="cate-list"
+  listData="{{catList}}"
+  stickyWidth="{{stickyWidth}}"
+  bind:click-cat="onClickCat" 
+/>
 
 <playlist-view isShowMore titleText="推荐歌单"
   listData="{{personalizedList}}"

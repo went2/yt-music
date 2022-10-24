@@ -78,7 +78,7 @@ Component({
     attached() {
       wx.getStorage({ key: 'navBarInfo' })
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         if(res.data) { this.setNavBarInfo(res.data) }
       })
       .catch(() => {

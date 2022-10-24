@@ -7,10 +7,12 @@
   "author": "sf",
   "license": "ISC",
   "devDependencies": {
+    "@types/underscore": "^1.11.4",
     "miniprogram-api-typings": "^2.8.3-1"
   },
   "main": "",
   "dependencies": {
-    "sf-miniprogram-navbar": "^1.0.1"
+    "sf-miniprogram-navbar": "^1.0.1",
+    "underscore": "^1.13.6"
   }
 }

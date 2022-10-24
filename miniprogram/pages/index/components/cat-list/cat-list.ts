@@ -4,11 +4,21 @@ Component({
     listData: {
       type: Array,
       value: []
+    },
+    isSticky: {
+      type: Boolean,
+      value: false
+    },
+    stickyWidth: {
+      type: Number,
+      value: 0
     }
   },
   data: {
     isActive: -1,
-    screenWidth: 375
+    screenWidth: 375,
+    width: 0,
+    top: 0,
   },
   methods: {
     setActive(event: WechatMiniprogram.BaseEvent) {
@@ -19,7 +29,18 @@ Component({
   },
   lifetimes: {
     attached() {
-      this.setData({ screenWidth: app.globalData.screenWidth })
+      // console.log(app.globalData.navBarInfo.menuTop);
+      this.setData({ 
+        screenWidth: app.globalData.screenWidth, 
+        top: app.globalData.navBarInfo.menuTop - 9
+      });
+    }
+  },
+  observers: {
+    "stickyWidth": function(newValue) {
+        this.setData({
+          width: newValue > 0 ? newValue : this.data.screenWidth
+        })
     }
   }
 });

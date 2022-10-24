@@ -17,7 +17,7 @@ export const catList: CatItem[] = [
     desc: '时下热门歌单曲目'
   },
   {
-    text: '开始战斗',
+    text: '战斗进行曲',
     desc: '我在自己的BGM里是无敌的！'
   },
   {

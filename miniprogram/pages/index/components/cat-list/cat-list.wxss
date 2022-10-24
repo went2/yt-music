@@ -1,16 +1,19 @@
 .cat-list {
   margin-left: -10px;
-  padding: 20rpx 0;
+  padding: 18rpx 0;
   white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 9;
 }
 
 .cat-list .item {
   display: inline-block;
   margin-left: 10px;
 
-  background-color: #eee;
+  background-color: rgba(238,238,238,.9);
   font-size: 26rpx;
-  padding: 15rpx 20rpx;
+  padding: 13rpx 20rpx;
   border: 1px solid #bbb;
   border-radius: 16px;
   letter-spacing: 0.8rpx;

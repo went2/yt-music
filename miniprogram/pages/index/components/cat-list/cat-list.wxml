@@ -1,7 +1,6 @@
 <scroll-view
-  class="cat-list"
-  scroll-x
-  style="width: {{screenWidth}}px;"
+  class="cat-list" scroll-x
+  style="width: {{ width }}px;top: {{top}}px;"
 >
   <block wx:for="{{listData}}" wx:key="text">
     <view

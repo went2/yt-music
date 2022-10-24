@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/explore/explore",
     "pages/library/library",
-    "pages/detail-playlist/detail-playlist"
+    "pages/detail-playlist/detail-playlist",
+    "pages/detail-playlist-item/detail-playlist-item"
   ],
   "window": {
     "backgroundTextStyle": "light",
