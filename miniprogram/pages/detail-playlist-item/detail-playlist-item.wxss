@@ -1,1 +1,40 @@
-/* pages/detail-playlist-item/detail-playlist-item.wxss */
+.bg, .bg-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.bg-cover {
+  background-color: rgba(0, 0, 0, .3);
+  backdrop-filter: blur(20px);
+}
+
+.info {
+  margin-top: 25rpx;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
+}
+
+.info .cover {
+  width: 200px;
+  height: 200px;
+  border-radius: 15rpx;
+}
+
+.info .name {
+  margin-top: 40rpx;
+  font-size: 40rpx;
+  font-weight: 700;
+  letter-spacing: 1rpx;
+}
+
+.info .description {
+  margin-top: 20rpx;
+  font-size: 26rpx;
+}

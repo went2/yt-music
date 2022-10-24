@@ -1,0 +1,21 @@
+<view class="nav-bar">
+  <view class="status-bar" style="height: {{statusHeight}}px;"></view>
+  <view class="nav">
+    <view class="left">
+      <view class="slot">
+        <slot name="left"></slot>
+      </view>
+      <view class="default" bind:tap="tapLeft">
+        <image src="../../assets/images/icons/chevron-left.png"></image>
+      </view>
+    </view>
+    <view class="middle">
+      <view class="slot">
+        <slot name="middle"></slot>
+      </view>
+      <view class="default">{{title}}</view>
+    </view>
+    <view class="right"></view>
+  </view>
+</view>
+

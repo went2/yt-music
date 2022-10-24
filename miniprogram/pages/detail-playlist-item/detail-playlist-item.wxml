@@ -1,1 +1,15 @@
-<text>这是专辑编号{{id}}</text>
+<!-- 背景 -->
+<image class="bg" src="{{detail.coverImgUrl}}"></image>
+<view class="bg-cover"></view>
+
+<nav-bar title="专辑详情"></nav-bar>
+
+<view class="info">
+  <image class="cover" src="{{detail.coverImgUrl}}" mode="widthFix"></image>
+  <view class="name">{{ detail.name }}</view>
+  <view class="description">{{ detail.description }}</view>
+</view>
+
+<view class="controller"></view>
+
+<view class="song-list"></view>

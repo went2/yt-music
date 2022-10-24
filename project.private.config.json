@@ -15,6 +15,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "专辑详情",
+          "pathName": "pages/detail-playlist-item/detail-playlist-item",
+          "query": "id=163150274",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

@@ -10,6 +10,10 @@ page {
   color:transparent;
 }
 
+image {
+  vertical-align: top;
+}
+
 /* .container {
   height: 100%;
   display: flex;
