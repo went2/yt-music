@@ -98,3 +98,27 @@
   width: 140rpx;
   height: 140rpx;
 }
+
+.lyric-list {
+  padding: 40rpx;
+  box-sizing: border-box;
+  color: #bbb;
+  font-size: 28rpx;
+  text-align: center;
+  height: 100%;
+}
+
+.lyric-list ::-webkit-scrollbar {
+  display: none;
+}
+
+.lyric-list .item {
+  height: 70rpx;
+  line-height: 70rpx;
+}
+
+.lyric-active {
+  color: #fff;
+  font-size: 48rpx;
+}
+

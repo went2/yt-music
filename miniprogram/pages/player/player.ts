@@ -17,7 +17,9 @@ Page({
     isPlaying: false,
     isSliding: false,
     lyric: [] as Array<{ text: string, time: number }>,
-    currentLyric: ''
+    currentLyric: '',
+    currentLyricIndex: -1,
+    lyricScrollTop: 0
   },
 
   onLoad(options) {
@@ -44,7 +46,8 @@ Page({
         const currentTime = audioCtx.currentTime * 1000;
         this.setData({
           currentTime,
-          currentProgress: currentTime / this.data.duration * 100
+          currentProgress: currentTime / this.data.duration * 100,
+          lyricScrollTop: this.data.currentLyricIndex * 35
         });
         this.setCurrentLyric();
       }
@@ -101,7 +104,8 @@ Page({
       if(lyric.time >= this.data.currentTime) {
         index = i - 1;
         this.setData({
-          currentLyric: this.data.lyric[index].text
+          currentLyric: this.data.lyric[index].text,
+          currentLyricIndex: index
         })
         break;
       }

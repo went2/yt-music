@@ -68,7 +68,19 @@
 
 <!-- 歌词 -->
   <swiper-item>
-    歌词页
-
+    <scroll-view
+      class="lyric-list" scroll-y
+      scroll-with-animation
+      scroll-top="{{lyricScrollTop}}"
+    >
+      <block wx:for="{{lyric}}" wx:key="time">
+        <view 
+          class="item {{ currentLyricIndex === index ? 'lyric-active' : ''}}"
+          style="padding-top: {{ index===0 ? (swiperHeight*.45) : 0 }}px;padding-bottom:{{index === lyric.length-1 ? (swiperHeight*.45) : 0}}px"
+        >
+          {{item.text}}
+        </view>
+      </block>
+    </scroll-view>
   </swiper-item>
 </swiper>
