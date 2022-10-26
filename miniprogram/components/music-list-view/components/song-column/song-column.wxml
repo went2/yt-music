@@ -1,6 +1,6 @@
 <view class="list">
   <block wx:for="{{songGroup}}" wx:key="id">
-    <view class="item">
+    <view class="item" bind:tap="onTapItem" data-id="{{item.id}}">
       <image class="pic" src="{{item.al.picUrl}}"></image>
       <view class="info">
         <view class="name">{{item.name}}</view>

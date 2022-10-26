@@ -9,13 +9,16 @@ App<IAppOption>({
       menuWidth: 0
     },
     screenWidth: 0,
-    statusBarHeight: 0
+    screenHeight: 0,
+    statusBarHeight: 0,
+    MENU_BAR_HEIGHT: 44
   },
   onLaunch() {
     // init navbar data
     const systemInfo = wx.getSystemInfoSync();
     const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
     this.globalData.screenWidth = systemInfo.screenWidth;
+    this.globalData.screenHeight = systemInfo.screenHeight;
     this.globalData.statusBarHeight = systemInfo.statusBarHeight;
     // navBarHeight = statusBarHeight + 44
     this.globalData.navBarInfo!.navBarHeight =  systemInfo.statusBarHeight + 44;

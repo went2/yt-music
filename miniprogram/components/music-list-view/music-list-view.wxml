@@ -9,7 +9,7 @@
   <swiper class="list" style="width: {{screenWidth}}px;">
     <block wx:for="{{listData}}" wx:key="index">
       <swiper-item class="item">
-        <song-column class="song-column" songGroup="{{item}}" />
+        <song-column class="song-column" songGroup="{{item}}" bind:tap-item="onTapSong" />
       </swiper-item>
     </block>
   </swiper>

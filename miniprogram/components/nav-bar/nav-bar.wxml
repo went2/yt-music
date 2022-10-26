@@ -6,7 +6,7 @@
         <slot name="left"></slot>
       </view>
       <view class="default" bind:tap="tapLeft">
-        <image src="../../assets/images/icons/chevron-left.png"></image>
+        <image class="image" src="../../assets/images/icons/chevron-left.png"></image>
       </view>
     </view>
     <view class="middle">

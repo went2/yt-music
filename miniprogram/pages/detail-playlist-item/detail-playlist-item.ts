@@ -1,4 +1,3 @@
-// pages/detail-playlist-item/detail-playlist-item.ts
 import detailStore from '../../store/detailStore';
 
 Page({
@@ -15,6 +14,12 @@ Page({
   },
   onTapLeft(){
     wx.navigateBack();
+  },
+  onTapSong(event: WechatMiniprogram.BaseEvent) {
+    const id = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `/pages/player/player?id=${id}`
+    })
   },
   setPlaylistDetail(value: any) {
     this.setData({

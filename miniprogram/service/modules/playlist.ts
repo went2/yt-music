@@ -40,3 +40,11 @@ export function getOfficialRecommend() {
     url: "/mv/exclusive/rcmd"
   });
 }
+
+export function getSongDetail(ids: string) {
+  // ids: 347230,347231
+  return req.get({
+    url: '/song/detail',
+    data: { ids }
+  })
+}

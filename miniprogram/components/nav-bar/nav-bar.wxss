@@ -23,7 +23,7 @@
   display: none;
 }
 
-.left .default image {
+.left .default .image {
   width: 40rpx;
   height: 40rpx;
 }

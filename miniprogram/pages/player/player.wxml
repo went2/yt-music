@@ -1,0 +1,74 @@
+<wxs src="../../utils/format.wxs" module="format"></wxs>
+
+<!-- 背景 -->
+<image class="bg" src="{{songDetail.al.picUrl}}"></image>
+<view class="bg-cover"></view>
+
+<nav-bar>
+  <view slot="middle" class="nav-middle">
+    <block wx:for="{{navItems}}" wx:key="item">
+      <view
+        class="nav-item {{ index === activeNav ? 'active':'' }}"
+        data-index="{{index}}"
+        bind:tap="onTapNav"
+      >{{item}}</view>
+      <view wx:if="{{ index !== item.length-1 }}">|</view>
+    </block>
+  </view>
+</nav-bar>
+
+<!-- 滑动组件 -->
+<swiper 
+  class="content"
+  style="height: {{swiperHeight}}px"
+  bind:change="onSwiperChange"
+  current="{{activeNav}}"
+>
+<!-- 歌曲播放 -->
+  <swiper-item class="player">
+    <view class="album">
+        <view>
+          <image class="image" src="{{songDetail.al.picUrl}}" mode="widthFix"></image>
+        </view>
+        <view class="name">{{songDetail.name}}</view>
+        <view class="singer">{{songDetail.ar[0].name}}</view>
+    </view>
+    <view class="lyric">{{ 'This is a lyric' }}</view>
+    <view class="controller">
+      <view class="progress"> 
+        <slider class="slider" block-size="12"
+          value="{{currentProgress}}"
+          bind:change="onSliderChange"
+          bind:changing="onSliderChanging"
+        />
+        <view class="time">
+          <view>{{format.formatDuration(currentTime)}}</view>
+          <view>{{format.formatDuration(duration)}}</view>
+        </view>
+      </view>
+      <view class="buttons">
+        <view>
+          <image class="btn mode" src="../../assets/images/music/player/play_order.png"></image>
+        </view>
+        <view>
+          <image class="btn prev" src="../../assets/images/music/player/play_prev.png"></image>
+        </view>
+        <view bind:tap="onTapPlay">
+          <image class="btn play" src="../../assets/images/music/player/play_{{ isPlaying ? 'resume' : 'pause'}}.png"></image>
+        </view>
+        <view>
+          <image class="btn next" src="../../assets/images/music/player/play_next.png"></image>
+        </view>
+        <view>
+          <image class="btn list" src="../../assets/images/music/player/play_music.png"></image>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+
+<!-- 歌词 -->
+  <swiper-item>
+    歌词页
+
+  </swiper-item>
+</swiper>

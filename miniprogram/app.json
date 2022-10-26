@@ -4,7 +4,8 @@
     "pages/explore/explore",
     "pages/library/library",
     "pages/detail-playlist/detail-playlist",
-    "pages/detail-playlist-item/detail-playlist-item"
+    "pages/detail-playlist-item/detail-playlist-item",
+    "pages/player/player"
   ],
   "window": {
     "backgroundTextStyle": "light",
