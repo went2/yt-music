@@ -16,6 +16,8 @@ Page({
     currentProgress: 0,
     isPlaying: false,
     isSliding: false,
+    lyric: [] as Array<{ text: string, time: number }>,
+    currentLyric: ''
   },
 
   onLoad(options) {
@@ -28,23 +30,26 @@ Page({
     })
 
     detailStore.onState('songDetail', this.setSongDetail);
+    detailStore.onState('lyric', this.setLyric);
+
     detailStore.dispatch('fetchSongDetail', this.data.id);
+    detailStore.dispatch('fetchLyric', this.data.id);
 
     audioCtx.src=`https://music.163.com/song/media/outer/url?id=${this.data.id}.mp3`;
     audioCtx.autoplay = true;
-    // audioCtx.pause();
 
     // 播放进度
     audioCtx.onTimeUpdate(throttle(() => {
       if(!this.data.isSliding) {
-        console.log('onTimeUpdate');
+        const currentTime = audioCtx.currentTime * 1000;
         this.setData({
-          currentTime: audioCtx.currentTime * 1000,
-          currentProgress: (audioCtx.currentTime * 1000) / this.data.duration * 100
-        })
-      } 
+          currentTime,
+          currentProgress: currentTime / this.data.duration * 100
+        });
+        this.setCurrentLyric();
+      }
+    }, 200, { leading: false, trailing: false }));
 
-    }, 200));
     audioCtx.onWaiting(() => {
       audioCtx.pause();
     });
@@ -57,6 +62,10 @@ Page({
   onTapNav(event: WechatMiniprogram.BaseEvent){
     this.setActiveNav(event.currentTarget.dataset.index);
   },
+  onTapNavBack() {
+    wx.navigateBack();
+  },
+
   onSwiperChange(event: WechatMiniprogram.SwiperChange) {
     this.setActiveNav(event.detail.current);
   },
@@ -70,9 +79,9 @@ Page({
     }
   },
   onSliderChange(event: WechatMiniprogram.SliderChange) {
-    const percent = event.detail.value;
-    const currentTime = (percent/100)*this.data.duration;
-    this.setData({ currentTime });
+    const value = event.detail.value;
+    const currentTime = (value/100)*this.data.duration;
+    this.setData({ currentTime, currentProgress: value });
     audioCtx.seek(currentTime/1000);
     this.data.isSliding = false;
   },
@@ -85,15 +94,32 @@ Page({
     this.data.isSliding = true;
   },
 
+  setCurrentLyric(){
+    let index = this.data.lyric.length - 1;
+    for(let i=0; i<this.data.lyric.length; i++) {
+      const lyric = this.data.lyric[i];
+      if(lyric.time >= this.data.currentTime) {
+        index = i - 1;
+        this.setData({
+          currentLyric: this.data.lyric[index].text
+        })
+        break;
+      }
+    }
+  },
 
   setActiveNav(activeIndex:number) {
     this.setData({activeNav: activeIndex});
   },
   setSongDetail(value: any) {
-    this.setData({ songDetail: value, duration: value.dt })
+    this.setData({ songDetail: value, duration: value.dt || 0 })
+  },
+  setLyric(value: Array<{ text: string, time: number }>) {
+    this.setData({ lyric: value || '' });
   },
   onUnload() {
     detailStore.offState('songDetail', this.setSongDetail);
+    detailStore.offState('lyric', this.setLyric);
   }
 });
 

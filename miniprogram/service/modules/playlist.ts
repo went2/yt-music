@@ -48,3 +48,10 @@ export function getSongDetail(ids: string) {
     data: { ids }
   })
 }
+
+export function getLyric(id: string) {
+  return req.get({
+    url: '/lyric',
+    data: { id }
+  })
+}

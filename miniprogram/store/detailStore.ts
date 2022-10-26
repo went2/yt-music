@@ -1,12 +1,15 @@
 import EventStore from './event-store/event-store';
 import { 
-  getPlaylistDetail, getSongDetail
+  getPlaylistDetail, getSongDetail, getLyric
 } from '../service/modules/playlist';
+
+import { parseLyric } from '../utils/objhelper';
 
 const detailStore = new EventStore({
   state: {
     playlistDetail: {},
-    songDetail: {}
+    songDetail: {},
+    lyric: []
   },
   actions: {
     fetchPlaylistDetail(ctx: any, id: string) {
@@ -23,6 +26,13 @@ const detailStore = new EventStore({
         ctx.songDetail = res.songs[0];
       }).catch(e => {
         console.log('获取歌曲详情', e);
+      })
+    },
+    fetchLyric(ctx: any, id: string) {
+      getLyric(id).then((res: any) => {
+        ctx.lyric = parseLyric(res.lrc.lyric);
+      }).catch(e => {
+        console.log('获取歌词失败', e);
       })
     }
   }

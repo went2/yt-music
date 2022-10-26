@@ -79,7 +79,6 @@ Page({
   },
   onClickPlaylistItem(event: WechatMiniprogram.CustomEvent) {
     // detail 是歌单id
-    console.log(event.detail)
     const id = event.detail;
     wx.navigateTo({
       url: `/pages/detail-playlist-item/detail-playlist-item?id=${id}`

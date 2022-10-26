@@ -4,7 +4,7 @@
 <image class="bg" src="{{songDetail.al.picUrl}}"></image>
 <view class="bg-cover"></view>
 
-<nav-bar>
+<nav-bar bind:tap-left="onTapNavBack">
   <view slot="middle" class="nav-middle">
     <block wx:for="{{navItems}}" wx:key="item">
       <view
@@ -33,7 +33,7 @@
         <view class="name">{{songDetail.name}}</view>
         <view class="singer">{{songDetail.ar[0].name}}</view>
     </view>
-    <view class="lyric">{{ 'This is a lyric' }}</view>
+    <view class="lyric">{{ currentLyric }}</view>
     <view class="controller">
       <view class="progress"> 
         <slider class="slider" block-size="12"

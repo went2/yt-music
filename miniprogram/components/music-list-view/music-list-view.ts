@@ -29,7 +29,7 @@ Component({
         const query = wx.createSelectorQuery();
         query.select('.song-column').boundingClientRect();
         query.exec(res => {
-          console.log(res);
+          // console.log(res);
         })
       }, 0)
       
