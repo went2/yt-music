@@ -1,5 +1,6 @@
 import { getMetaCat } from '../../service/modules/playlist';
 import recommendStore from '../../store/recommendStore';
+import playStore from '../../store/playStore';
 import { group } from '../../utils/arrayhelper';
 import { throttle } from 'underscore';
 
@@ -70,6 +71,7 @@ Page({
     }
   },
 
+  // event handlers
   onSeachTap() {
     console.log('home: click search');
   },
@@ -88,6 +90,18 @@ Page({
     wx.navigateTo({
       url: '/pages/detail-playlist/detail-playlist'
     })
+  },
+
+  onSongTap(event: WechatMiniprogram.CustomEvent) {
+    const id = event.detail;
+    const songIndex = recommendStore.state.recommendSongs.findIndex((song: any) => song.id === id);
+    
+    playStore.setState('playSongList', recommendStore.state.recommendSongs);
+    playStore.setState('playSongIndex', songIndex);
+
+    wx.navigateTo({
+      url: `/pages/player/player?id=${id}`
+    });
   },
 
   async setMetaCat() {

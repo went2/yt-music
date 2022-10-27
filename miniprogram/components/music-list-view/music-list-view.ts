@@ -15,9 +15,7 @@ Component({
       this.triggerEvent('click-more');
     },
     onTapSong(event: WechatMiniprogram.CustomEvent) {
-      wx.navigateTo({
-        url: `/pages/player/player?id=${event.detail}`
-      });
+      this.triggerEvent('tap-song', event.detail);
     },
     onClickItem(event: WechatMiniprogram.BaseEvent) {      
       this.triggerEvent('click-item', event.currentTarget.dataset.id);

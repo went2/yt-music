@@ -51,13 +51,21 @@
           <image class="btn mode" src="../../assets/images/music/player/play_order.png"></image>
         </view>
         <view>
-          <image class="btn prev" src="../../assets/images/music/player/play_prev.png"></image>
+          <image
+            class="btn prev"
+            src="../../assets/images/music/player/play_prev.png"
+            bindtap="onTapPre"
+          />
         </view>
         <view bind:tap="onTapPlay">
           <image class="btn play" src="../../assets/images/music/player/play_{{ isPlaying ? 'resume' : 'pause'}}.png"></image>
         </view>
         <view>
-          <image class="btn next" src="../../assets/images/music/player/play_next.png"></image>
+          <image
+            class="btn next" 
+            src="../../assets/images/music/player/play_next.png"
+            bindtap="onTapNext"
+          />
         </view>
         <view>
           <image class="btn list" src="../../assets/images/music/player/play_music.png"></image>

@@ -60,7 +60,7 @@ class EventStore {
     stateCallback.apply(this.state, [value])
   }
 
-  onStates(statekeys:any, stateCallback: ()=>void) {
+  onStates(statekeys:any, stateCallback: (param?: any)=>void) {
     const keys = Object.keys(this.state)
     const value = {}
     for (const theKey of statekeys) {
@@ -76,7 +76,7 @@ class EventStore {
     stateCallback.apply(this.state, [value])
   }
 
-  offStates(stateKeys:any, stateCallback: ()=>void) {
+  offStates(stateKeys:any, stateCallback: (param?: any)=>void) {
     const keys = Object.keys(this.state)
     stateKeys.forEach((theKey:any) => {
       if (keys.indexOf(theKey) === -1) {

@@ -1,12 +1,13 @@
 import detailStore from '../../store/detailStore';
-import { throttle } from 'underscore'
+import { throttle } from 'underscore';
+import playStore from '../../store/playStore';
 
 const app = getApp();
 const audioCtx = wx.createInnerAudioContext();
 
 Page({
   data: {
-    id: '',
+    id: -1,
     songDetail: {},
     navItems: ['歌曲','歌词'],
     activeNav: 0,
@@ -19,28 +20,22 @@ Page({
     lyric: [] as Array<{ text: string, time: number }>,
     currentLyric: '',
     currentLyricIndex: -1,
-    lyricScrollTop: 0
+    lyricScrollTop: 0,
+    playSongList: [] as any[],
+    playSongIndex: -1
   },
 
   onLoad(options) {
-    const id = options.id;
-    this.setData({ id });
-
+    const id = Number(options.id);
     const appData =  app.globalData;
     this.setData({
       swiperHeight: appData.screenHeight - appData.statusBarHeight - appData.MENU_BAR_HEIGHT
     })
-
+    playStore.onStates(['playSongList', 'playSongIndex'], this.setPlaySongInfo)
     detailStore.onState('songDetail', this.setSongDetail);
     detailStore.onState('lyric', this.setLyric);
 
-    detailStore.dispatch('fetchSongDetail', this.data.id);
-    detailStore.dispatch('fetchLyric', this.data.id);
-
-    audioCtx.src=`https://music.163.com/song/media/outer/url?id=${this.data.id}.mp3`;
-    audioCtx.autoplay = true;
-
-    // 播放进度
+    // 播放进度监听
     audioCtx.onTimeUpdate(throttle(() => {
       if(!this.data.isSliding) {
         const currentTime = audioCtx.currentTime * 1000;
@@ -59,6 +54,41 @@ Page({
     audioCtx.onCanplay(() => {
       audioCtx.play();
     })
+
+    // 开始播放
+    this.setupPlayer(id);
+  },
+
+  setupPlayer(id: number) {
+    this.setData({ id });
+    audioCtx.src=`https://music.163.com/song/media/outer/url?id=${id}.mp3`;
+    audioCtx.autoplay = true;
+
+    detailStore.dispatch('fetchSongDetail', this.data.id);
+    detailStore.dispatch('fetchLyric', this.data.id);
+  },
+
+  setPlaySongInfo({ playSongList, playSongIndex }: any) {
+    if(playSongList) {
+      this.setData({ playSongList })
+    }
+    if(playSongIndex !== undefined) {
+      this.setData({ playSongIndex })
+    }
+  },
+  changeSong(isNext: boolean) {
+    let songId = -1;
+    let songIndex = -1;
+    if(isNext) { // next song
+      songIndex = this.data.playSongIndex + 1;
+      songIndex = songIndex >= this.data.playSongList.length - 1 ? 0 : songIndex;
+    } else { // prev song
+      songIndex = this.data.playSongIndex - 1;
+      songIndex = songIndex < 0 ? this.data.playSongList.length - 1 : songIndex;
+    }
+    playStore.setState('playSongIndex', songIndex);
+    songId = this.data.playSongList[songIndex].id;
+    this.setupPlayer(songId);
   },
 
   // handlers
@@ -67,6 +97,14 @@ Page({
   },
   onTapNavBack() {
     wx.navigateBack();
+  },
+
+  onTapPre() {
+    this.changeSong(false);
+  },
+  
+  onTapNext() {
+    this.changeSong(true);
   },
 
   onSwiperChange(event: WechatMiniprogram.SwiperChange) {
@@ -96,7 +134,6 @@ Page({
     })
     this.data.isSliding = true;
   },
-
   setCurrentLyric(){
     let index = this.data.lyric.length - 1;
     for(let i=0; i<this.data.lyric.length; i++) {
@@ -111,7 +148,6 @@ Page({
       }
     }
   },
-
   setActiveNav(activeIndex:number) {
     this.setData({activeNav: activeIndex});
   },
@@ -124,6 +160,7 @@ Page({
   onUnload() {
     detailStore.offState('songDetail', this.setSongDetail);
     detailStore.offState('lyric', this.setLyric);
+    playStore.offStates(['playSongList', 'playSongIndex'], this.setPlaySongInfo)
   }
 });
 

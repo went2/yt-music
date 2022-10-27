@@ -19,7 +19,12 @@
   bind:click-more="onClickPlayListMore"
 />
 
-<music-list-view isShowDesc titleText="选首听听看" titleDesc="一首歌曲，进入情境" listData="{{songList}}"
+<music-list-view
+  isShowDesc 
+  titleText="选首听听看" 
+  titleDesc="一首歌曲，进入情境" 
+  listData="{{songList}}"
+  bind:tap-song="onSongTap"
 />
 
 <video-list-view titleText="推荐MV" listData="{{videoList}}" bind:click-item="onClickItem" />
