@@ -119,6 +119,6 @@
 
 .lyric-active {
   color: #fff;
-  font-size: 48rpx;
+  font-size: 40rpx;
 }
 

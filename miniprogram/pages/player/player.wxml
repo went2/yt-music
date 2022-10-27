@@ -35,7 +35,7 @@
     </view>
     <view class="lyric">{{ currentLyric }}</view>
     <view class="controller">
-      <view class="progress"> 
+      <view class="progress">
         <slider class="slider" block-size="12"
           value="{{currentProgress}}"
           bind:change="onSliderChange"
@@ -48,7 +48,11 @@
       </view>
       <view class="buttons">
         <view>
-          <image class="btn mode" src="../../assets/images/music/player/play_order.png"></image>
+          <image
+            class="btn mode"
+            bindtap="onTapMode"
+            src="../../assets/images/music/player/play_{{ mode === 0 ? 'order' : mode === 1 ? 'repeat' : 'random'}}.png"
+          />
         </view>
         <view>
           <image
@@ -84,7 +88,7 @@
       <block wx:for="{{lyric}}" wx:key="time">
         <view 
           class="item {{ currentLyricIndex === index ? 'lyric-active' : ''}}"
-          style="padding-top: {{ index===0 ? (swiperHeight*.45) : 0 }}px;padding-bottom:{{index === lyric.length-1 ? (swiperHeight*.45) : 0}}px"
+          style="padding-top: {{ index===0 ? (swiperHeight*.5) : 0 }}px;padding-bottom:{{index === lyric.length-1 ? (swiperHeight*.45) : 0}}px"
         >
           {{item.text}}
         </view>

@@ -22,7 +22,8 @@ Page({
     currentLyricIndex: -1,
     lyricScrollTop: 0,
     playSongList: [] as any[],
-    playSongIndex: -1
+    playSongIndex: -1,
+    mode: 0, // 0 列表循环 1 单曲循环 2 随机
   },
 
   onLoad(options) {
@@ -54,13 +55,18 @@ Page({
     audioCtx.onCanplay(() => {
       audioCtx.play();
     })
+    // 结束后自动播放下一首
+    audioCtx.onEnded(() => {
+      if(this.data.mode === 1) audioCtx.seek(0);
+      else this.changeSong(true);
+    });
 
     // 开始播放
     this.setupPlayer(id);
   },
 
   setupPlayer(id: number) {
-    this.setData({ id });
+    this.setData({ id, lyric: [], isPlaying: false });
     audioCtx.src=`https://music.163.com/song/media/outer/url?id=${id}.mp3`;
     audioCtx.autoplay = true;
 
@@ -76,15 +82,20 @@ Page({
       this.setData({ playSongIndex })
     }
   },
-  changeSong(isNext: boolean) {
+  changeSong(isNext: boolean = true) {
     let songId = -1;
     let songIndex = -1;
-    if(isNext) { // next song
-      songIndex = this.data.playSongIndex + 1;
-      songIndex = songIndex >= this.data.playSongList.length - 1 ? 0 : songIndex;
-    } else { // prev song
-      songIndex = this.data.playSongIndex - 1;
-      songIndex = songIndex < 0 ? this.data.playSongList.length - 1 : songIndex;
+
+    if(this.data.mode === 2) {
+      songIndex = Math.floor(Math.random() * this.data.playSongList.length);
+    } else {
+      if(isNext) { // next song
+        songIndex = this.data.playSongIndex + 1;
+        songIndex = songIndex >= this.data.playSongList.length - 1 ? 0 : songIndex;
+      } else { // prev song
+        songIndex = this.data.playSongIndex - 1;
+        songIndex = songIndex < 0 ? this.data.playSongList.length - 1 : songIndex;
+      }
     }
     playStore.setState('playSongIndex', songIndex);
     songId = this.data.playSongList[songIndex].id;
@@ -105,6 +116,12 @@ Page({
   
   onTapNext() {
     this.changeSong(true);
+  },
+
+  onTapMode() {
+    let mode = this.data.mode + 1;
+    mode = mode > 2 ? 0 : mode;
+    this.setData({ mode });
   },
 
   onSwiperChange(event: WechatMiniprogram.SwiperChange) {
