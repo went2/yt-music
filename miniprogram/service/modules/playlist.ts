@@ -41,15 +41,14 @@ export function getOfficialRecommend() {
   });
 }
 
-export function getSongDetail(ids: string) {
-  // ids: 347230,347231
+export function getSongDetail(ids: number) {
   return req.get({
     url: '/song/detail',
     data: { ids }
   })
 }
 
-export function getLyric(id: string) {
+export function getLyric(id: number) {
   return req.get({
     url: '/lyric',
     data: { id }
