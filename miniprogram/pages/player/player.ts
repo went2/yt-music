@@ -1,4 +1,4 @@
-import playStore from '../../store/playStore';
+import playStore, { audioCtx } from '../../store/playStore';
 import { throttle } from 'underscore';
 
 const app = getApp();
@@ -15,7 +15,7 @@ Page({
     mode: 0,
     currentTime: 0,
     duration: 0,
-    isPlaying: false,
+    isPlaying: true,
     playSongList: [] as any[],
     playSongIndex: -1,
 
@@ -35,7 +35,6 @@ Page({
 
     playStore.onStates(this.data.keys, this.setPlaySongInfo);
     playStore.dispatch('playNewSongWithId', id);
-
   },
 
   setPlaySongInfo({ 
@@ -60,8 +59,9 @@ Page({
     }
     if(currentLyricIndex !== undefined){
       this.setData({
+        currentLyricIndex,
         lyricScrollTop: this.data.currentLyricIndex * 35
-      })
+      });
     }
     if(mode !== undefined) {
       this.setData({ mode });
@@ -69,34 +69,17 @@ Page({
     if(currentTime) {
       this.updateProgress(currentTime);
     }
-    if(isPlaying) {
+    if(isPlaying !== undefined) {
       this.setData({ isPlaying });
     }
   },
 
-  changeSong(isNext: boolean = true) {
-    let songId = -1;
-    let songIndex = -1;
-
-    if(this.data.mode === 2) {
-      songIndex = Math.floor(Math.random() * this.data.playSongList.length);
-    } else {
-      if(isNext) { // next song
-        songIndex = this.data.playSongIndex + 1;
-        songIndex = songIndex >= this.data.playSongList.length - 1 ? 0 : songIndex;
-      } else { // prev song
-        songIndex = this.data.playSongIndex - 1;
-        songIndex = songIndex < 0 ? this.data.playSongList.length - 1 : songIndex;
-      }
-    }
-    playStore.setState('playSongIndex', songIndex);
-    songId = this.data.playSongList[songIndex].id;
-    // this.setupPlayer(songId);
-  },
-
-  updateProgress: throttle(function(currentTime: number){
+  updateProgress: throttle(function(currentTime: number) {
+    //@ts-ignore
     if(!this.data.isSliding) {
+      //@ts-ignore
       const currentProgress = currentTime / this.data.duration * 100;
+      //@ts-ignore
       this.setData({ currentTime, currentProgress });
     }
   }, 500, { leading: false, trailing: false }),
@@ -110,36 +93,30 @@ Page({
   },
 
   onTapPre() {
-    this.changeSong(false);
+    playStore.dispatch('changeNewSongAction', false)
   },
   
   onTapNext() {
-    this.changeSong(true);
+    playStore.dispatch('changeNewSongAction', true)
   },
 
   onTapMode() {
     let mode = this.data.mode + 1;
     mode = mode > 2 ? 0 : mode;
-    this.setData({ mode });
+    playStore.setState('mode', mode);
   },
 
   onSwiperChange(event: WechatMiniprogram.SwiperChange) {
     this.setActiveNav(event.detail.current);
   },
   onTapPlay() {
-    // if(audioCtx.paused) {
-    //   this.setData({ isPlaying: false });
-    //   audioCtx.play();
-    // } else {
-    //   this.setData({ isPlaying: true });
-    //   audioCtx.pause();
-    // }
+    playStore.dispatch('changePlayStatusAction');
   },
   onSliderChange(event: WechatMiniprogram.SliderChange) {
     const value = event.detail.value;
     const currentTime = (value/100)*this.data.duration;
     this.setData({ currentTime, currentProgress: value });
-    // audioCtx.seek(currentTime/1000);
+    audioCtx.seek(currentTime/1000);
     this.data.isSliding = false;
   },
   onSliderChanging(event: WechatMiniprogram.SliderChange) {

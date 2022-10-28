@@ -62,7 +62,7 @@
           />
         </view>
         <view bind:tap="onTapPlay">
-          <image class="btn play" src="../../assets/images/music/player/play_{{ isPlaying ? 'resume' : 'pause'}}.png"></image>
+          <image class="btn play" src="../../assets/images/music/player/play_{{ isPlaying ? 'pause' : 'resume'}}.png"></image>
         </view>
         <view>
           <image

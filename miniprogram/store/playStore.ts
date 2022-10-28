@@ -3,9 +3,8 @@ import {
   getSongDetail, getLyric
 } from '../service/modules/playlist';
 import { parseLyric } from '../utils/objhelper';
-import { throttle } from 'underscore';
 
-const audioCtx = wx.createInnerAudioContext();
+export const audioCtx = wx.createInnerAudioContext();
 
 const playStore = new EventStore({
   state: {
@@ -19,7 +18,7 @@ const playStore = new EventStore({
     currentLyricIndex: -1,
     mode: 0, // 0 列表循环 1 单曲循环 2 随机
     currentTime: 0,
-    isPlaying: false,
+    isPlaying: true,
     isFirstPlay: true
   },
   actions: {
@@ -55,13 +54,11 @@ const playStore = new EventStore({
     },
     setupAudioContextListener(ctx: any){
       audioCtx.onTimeUpdate(() => {
-        // if(!this.data.isSliding) {
           const currentTime = audioCtx.currentTime * 1000;
           ctx.currentTime = currentTime;
           ctx.currentProgress = currentTime / ctx.duration * 100,
           // @ts-ignore
           this.dispatch('setCurrentLyricAction');
-        // }
       });
 
       audioCtx.onEnded(() => {
@@ -72,9 +69,34 @@ const playStore = new EventStore({
       audioCtx.onCanplay(() => { audioCtx.play() });
     },
 
-    changeNewSongAction(ctx: any){
-      if(ctx.mode === 1) audioCtx.seek(0);
-      // else this.changeSong(true);
+    changeNewSongAction(ctx: any, isNext=true){
+      let index = ctx.playSongIndex;
+      let length = ctx.playSongList.length;
+      switch(ctx.mode) {
+        case 0: // 顺序播放
+          index = isNext ? index + 1 : index -1;
+          if(index === -1) index = length -1;
+          if(index === length) index = 0;
+          break;
+        case 1: // 单曲循环
+          break;
+        case 2: // 随机播放
+          index = Math.floor(Math.random() * length);
+          break;
+      }
+      ctx.playSongIndex = index;
+      const id = ctx.playSongList[index].id
+      //@ts-ignore
+      this.dispatch('playNewSongWithId', id);
+    },
+    changePlayStatusAction(ctx: any){
+      if(audioCtx.paused) {
+        ctx.isPlaying = true;
+        audioCtx.play();
+      } else {
+        ctx.isPlaying = false;
+        audioCtx.pause();
+      }
     },
 
     setCurrentLyricAction(ctx: any) {
