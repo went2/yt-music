@@ -7,34 +7,37 @@ const audioCtx = wx.createInnerAudioContext();
 
 Page({
   data: {
+    keys: ['songDetail', 'duration','playSongList', 'playSongIndex', 'lyric', 'currentLyric', 'currentLyricIndex', 'mode', 'currentTime', 'isPlaying'],
+    // 播放
     id: -1,
     songDetail: {},
-    navItems: ['歌曲','歌词'],
-    activeNav: 0,
-    swiperHeight: 0,
-    currentTime: 0,
-    duration: 0,
-    currentProgress: 0,
-    isPlaying: false,
-    isSliding: false,
     lyric: [] as Array<{ text: string, time: number }>,
     currentLyric: '',
     currentLyricIndex: -1,
-    lyricScrollTop: 0,
+    mode: 0,
+    currentTime: 0,
+    duration: 0,
+    isPlaying: false,
     playSongList: [] as any[],
     playSongIndex: -1,
-    mode: 0, // 0 列表循环 1 单曲循环 2 随机
+
+    // 页面
+    navItems: ['歌曲','歌词'],
+    activeNav: 0,
+    swiperHeight: 0,
+    currentProgress: 0,
+    isSliding: false,
+    lyricScrollTop: 0,
   },
 
   onLoad(options) {
     const id = Number(options.id);
     const appData =  app.globalData;
-    this.setData({
-      swiperHeight: appData.screenHeight - appData.statusBarHeight - appData.MENU_BAR_HEIGHT
-    })
-    playStore.onStates(['playSongList', 'playSongIndex'], this.setPlaySongInfo)
-    detailStore.onState('songDetail', this.setSongDetail);
-    detailStore.onState('lyric', this.setLyric);
+    this.setData({ swiperHeight: appData.screenHeight - appData.statusBarHeight - appData.MENU_BAR_HEIGHT });
+    playStore.setState('id', id);
+
+    playStore.onStates(this.data.keys, this.setPlaySongInfo);
+    playStore.dispatch('fectchSongDetail', id);
 
     // 播放进度监听
     audioCtx.onTimeUpdate(throttle(() => {
@@ -69,17 +72,39 @@ Page({
     this.setData({ id, lyric: [], isPlaying: false });
     audioCtx.src=`https://music.163.com/song/media/outer/url?id=${id}.mp3`;
     audioCtx.autoplay = true;
-
-    detailStore.dispatch('fetchSongDetail', this.data.id);
-    detailStore.dispatch('fetchLyric', this.data.id);
   },
 
-  setPlaySongInfo({ playSongList, playSongIndex }: any) {
+  setPlaySongInfo({ 
+    songDetail, playSongList, playSongIndex, lyric, currentLyric,
+    currentLyricIndex, mode, currentTime, isPlaying
+  }: any) {
+    if(songDetail) {
+      this.setData({ songDetail });
+      this.setData({ duration: songDetail.dt || 0 });
+    }
     if(playSongList) {
       this.setData({ playSongList })
     }
     if(playSongIndex !== undefined) {
       this.setData({ playSongIndex })
+    }
+    if(lyric) {
+      this.setData({ lyric });
+    }
+    if(currentLyric){
+      this.setData({ currentLyric });
+    }
+    if(currentLyricIndex !== undefined){
+      this.setData({ currentLyricIndex });
+    }
+    if(mode !== undefined) {
+      this.setData({ mode });
+    }
+    if(currentTime) {
+      this.setData({ currentTime });
+    }
+    if(isPlaying) {
+      this.setData({ isPlaying });
     }
   },
   changeSong(isNext: boolean = true) {
@@ -175,9 +200,7 @@ Page({
     this.setData({ lyric: value || '' });
   },
   onUnload() {
-    detailStore.offState('songDetail', this.setSongDetail);
-    detailStore.offState('lyric', this.setLyric);
-    playStore.offStates(['playSongList', 'playSongIndex'], this.setPlaySongInfo)
+    playStore.offStates(this.data.keys, this.setPlaySongInfo)
   }
 });
 
