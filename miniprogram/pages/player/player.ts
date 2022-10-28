@@ -143,14 +143,12 @@ Page({
     audioCtx.seek(currentTime/1000);
     this.data.isSliding = false;
   },
-  onSliderChanging(event: WechatMiniprogram.SliderChange) {
+  onSliderChanging: throttle(function(event: WechatMiniprogram.SliderChange) {
     const value = event.detail.value;
     const currentTime = value/100 * this.data.duration;
-    this.setData({
-      currentTime
-    })
+    this.setData({ currentTime })
     this.data.isSliding = true;
-  },
+  }, 150),
   setCurrentLyric(){
     let index = this.data.lyric.length - 1;
     for(let i=0; i<this.data.lyric.length; i++) {

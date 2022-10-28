@@ -20,6 +20,7 @@
 />
 
 <music-list-view
+  wx:if="{{songList.length}}"
   isShowDesc 
   titleText="选首听听看" 
   titleDesc="一首歌曲，进入情境" 
