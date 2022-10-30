@@ -1,21 +1,22 @@
-<view class="index-container">
-
-  <nav-search-bar
+<nav-search-bar
   title="YT Music"
   logoImg="../../assets/images/logo/youtube-music2-144.png"
   bind:tap-search="onSeachTap"
 />
-
 <view class="{{ stickyWidth ? 'cate-bg' : '' }}"></view>
 
 <cat-list
+  wx:if="{{catList.length}}"
   class="cate-list"
   listData="{{catList}}"
   stickyWidth="{{stickyWidth}}"
   bind:click-cat="onClickCat" 
 />
 
-<playlist-view isShowMore titleText="推荐歌单"
+<playlist-view
+  wx:if="{{personalizedList.length}}"
+  isShowMore
+  titleText="推荐歌单"
   listData="{{personalizedList}}"
   bind:click-item="onClickPlaylistItem"
   bind:click-more="onClickPlayListMore"
@@ -30,13 +31,22 @@
   bind:tap-song="onSongTap"
 />
 
-<video-list-view titleText="推荐MV" listData="{{videoList}}" bind:click-item="onClickItem" />
+<video-list-view
+  wx:if="{{videoList.length}}"
+  titleText="推荐MV"
+  listData="{{videoList}}"
+  bind:click-item="onClickItem" 
+/>
 
-<playlist-view isShowMore titleText="新发专辑"
+<playlist-view
+  wx:if="{{newReleaseList.length}}"
+  isShowMore 
+  titleText="新发专辑"
   listData="{{newReleaseList}}" bind:click-item="onClickItem"
 />
 
 <video-list-view
+  wx:if="{{officialRecommentList.length}}"
   titleText="网易出品"
   titleDesc="官方推荐，快来看哪"
   isShowMore
@@ -44,8 +54,11 @@
   bind:click-item="onClickItem"
 />
 
-<section-title titleText="探索" />
-<view class="explore">
+<section-title
+  wx:if="{{officialRecommentList.length}}"
+  titleText="探索"
+/>
+<view class="explore" wx:if="{{officialRecommentList.length}}">
   <block wx:for="{{exploreData}}" wx:key="key">
     <view class="item">
       <image class="icon-pic" src="{{item.iconUrl}}"></image>
@@ -80,7 +93,5 @@
       <image class="icon play-list" src="../../assets/images/music/player-bar/playlist_icon.png" />
     </view>
   </view>
-</view>
-
 </view>
 

@@ -35,7 +35,6 @@ Page({
     animaState: 'paused'
   },
   onLoad() {
-    playStore.dispatch('playNewSongWithId', 27808548);
     this.setMetaCat();
     recommendStore.onState('personalizedList', this.setPersonalizedList);
     recommendStore.onState('recommendMv', this.setRecommendMv);

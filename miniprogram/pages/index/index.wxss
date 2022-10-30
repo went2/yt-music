@@ -1,9 +1,5 @@
 /* pages/home/home.wxss */
 
-.index-container::-webkit-scrollbar {
-  display: none;
-}
-
 .cate-bg {
   position: fixed;
   top: 0;
