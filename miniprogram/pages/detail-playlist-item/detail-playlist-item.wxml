@@ -10,7 +10,7 @@
   <view class="description two-line">{{ detail.description }}</view>
 </view>
 
-<view class="controller">
+<view class="controller" wx:if="{{detail.coverImgUrl}}">
   <view>
     <image class="download" src="../../assets/images/icons/playlist-detail/download.png"></image>
   </view>

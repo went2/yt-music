@@ -15,7 +15,7 @@ Page({
     mode: 0,
     currentTime: 0,
     duration: 0,
-    isPlaying: true,
+    isPlaying: false,
     playSongList: [] as any[],
     playSongIndex: -1,
 
@@ -33,9 +33,16 @@ Page({
     this.setData({ swiperHeight: appData.screenHeight - appData.statusBarHeight - appData.MENU_BAR_HEIGHT });
 
     playStore.onStates(this.data.keys, this.setPlaySongInfo);
-    if(!playStore.state.isPlaying) {
+    if(!playStore.state.isPlaying && (id !== playStore.state.songDetail.id)) {
+      this.setData({ 
+        songDetail: {},
+        currentLyric: '',
+        lyric: [],
+        currentLyricIndex: -1,
+        currentTime: 0,
+        duration: 0
+      });
       playStore.dispatch('playNewSongWithId', id);
-
     }
   },
 

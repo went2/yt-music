@@ -25,13 +25,7 @@ const playStore = new EventStore({
     playNewSongWithId(ctx: any, id: number) {
       ctx.id = id;
       if(ctx.songDetail.id !== id) {
-        // clear current song info
         ctx.songDetail = {};
-        ctx.lyric = [];
-        ctx.currentLyric = '';
-        ctx.currentLyricIndex = -1;
-        ctx.currentTime = 0;
-        ctx.duration = 0;
       }
       getSongDetail(id).then((res: any) => {
         ctx.songDetail = res.songs[0];
@@ -43,7 +37,6 @@ const playStore = new EventStore({
 
       if(ctx.isFirstPlay) {
         ctx.isFirstPlay = false;
-        ctx.isPlaying = true;
         // @ts-ignore
         this.dispatch('setupAudioContextListener');
       }
@@ -52,6 +45,7 @@ const playStore = new EventStore({
       audioCtx.stop();
       audioCtx.src=`https://music.163.com/song/media/outer/url?id=${id}.mp3`;
       if(ctx.isPlaying) audioCtx.autoplay = true;
+      ctx.isPlaying = true;
     },
     setupAudioContextListener(ctx: any){
       audioCtx.onTimeUpdate(() => {
