@@ -18,7 +18,7 @@ const playStore = new EventStore({
     currentLyricIndex: -1,
     mode: 0, // 0 列表循环 1 单曲循环 2 随机
     currentTime: 0,
-    isPlaying: true,
+    isPlaying: false,
     isFirstPlay: true
   },
   actions: {
@@ -41,16 +41,17 @@ const playStore = new EventStore({
         ctx.lyric = parseLyric(res.lrc.lyric);
       }).catch(e => console.log('获取歌词失败', e) );
 
+      if(ctx.isFirstPlay) {
+        ctx.isFirstPlay = false;
+        ctx.isPlaying = true;
+        // @ts-ignore
+        this.dispatch('setupAudioContextListener');
+      }
+
       // play new song
       audioCtx.stop();
       audioCtx.src=`https://music.163.com/song/media/outer/url?id=${id}.mp3`;
       if(ctx.isPlaying) audioCtx.autoplay = true;
-
-      if(ctx.isFirstPlay) {
-        ctx.isFirstPlay = false;
-        // @ts-ignore
-        this.dispatch('setupAudioContextListener');
-      }
     },
     setupAudioContextListener(ctx: any){
       audioCtx.onTimeUpdate(() => {

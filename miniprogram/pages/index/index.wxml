@@ -1,4 +1,6 @@
-<nav-search-bar
+<view class="index-container">
+
+  <nav-search-bar
   title="YT Music"
   logoImg="../../assets/images/logo/youtube-music2-144.png"
   bind:tap-search="onSeachTap"
@@ -51,3 +53,34 @@
     </view>
   </block>
 </view>
+
+<view class="placeholder" wx:if="{{songDetail.id}}" />
+<view
+  wx:if="{{songDetail.id}}"
+  class="player-bar"
+>
+  <view class="left" bindtap="onTapPlayerBar">
+    <image
+      class="album rotate-anim" 
+      src="{{songDetail.al.picUrl}}"
+      style="animation-play-state: {{ animaState }};"
+      mode="widthFix"
+    />
+    <view class="name">{{songDetail.name}} </view>
+  </view>
+  <view class="right">
+    <view>
+      <image
+        class="icon play-status"
+        src="../../assets/images/music/player-bar/{{ isPlaying?'pause':'play' }}_icon.png"
+        bindtap="onPlayOrPauseTap"
+      />
+    </view>
+    <view>
+      <image class="icon play-list" src="../../assets/images/music/player-bar/playlist_icon.png" />
+    </view>
+  </view>
+</view>
+
+</view>
+

@@ -1,5 +1,9 @@
 /* pages/home/home.wxss */
 
+.index-container::-webkit-scrollbar {
+  display: none;
+}
+
 .cate-bg {
   position: fixed;
   top: 0;
@@ -36,3 +40,76 @@
   font-weight: 700;
   font-size: 30rpx;
 }
+
+.placeholder {
+  height: 44px;
+}
+
+.player-bar {
+  position: fixed;
+  height: 44px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
+  border: 1px solid #eee;
+  background-color: #333;
+  height: 88rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding: 0 8px;
+
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+  background: #fafafa;
+}
+
+.player-bar .left, .player-bar .right {
+  display: flex;
+  align-items: center;
+}
+
+.player-bar .left {
+  flex: 1;
+}
+
+.player-bar .left .album {
+  position: relative;
+  top: -10px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.player-bar .left .name {
+  font-size: 14px;
+  margin-left: 20rpx;
+}
+
+.player-bar .right {
+  margin-right: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.player-bar .right .icon {
+  margin: 0 15rpx;
+  width: 30px;
+  height: 30px;
+}
+
+@keyframes albumRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-anim {
+  animation: albumRotate 15s linear infinite;
+}
+

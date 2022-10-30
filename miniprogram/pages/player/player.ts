@@ -33,7 +33,10 @@ Page({
     this.setData({ swiperHeight: appData.screenHeight - appData.statusBarHeight - appData.MENU_BAR_HEIGHT });
 
     playStore.onStates(this.data.keys, this.setPlaySongInfo);
-    playStore.dispatch('playNewSongWithId', id);
+    if(!playStore.state.isPlaying) {
+      playStore.dispatch('playNewSongWithId', id);
+
+    }
   },
 
   setPlaySongInfo({ 

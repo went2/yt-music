@@ -28,15 +28,21 @@ Page({
       { iconUrl: "../../assets/images/icons/home-explore/moods.png", title: "分类听歌" }
     ],
     stickyWidth: 0,
-    cateTop: 0
+    cateTop: 0,
+    // 播放栏
+    isPlaying: false,
+    songDetail: {} as { id: number },
+    animaState: 'paused'
   },
   onLoad() {
+    playStore.dispatch('playNewSongWithId', 27808548);
     this.setMetaCat();
     recommendStore.onState('personalizedList', this.setPersonalizedList);
     recommendStore.onState('recommendMv', this.setRecommendMv);
     recommendStore.onState('recommendSongs', this.setRecommendSongs);
     recommendStore.onState('newRelease', this.setNewRelease);
-    recommendStore.onState('officialRecommend', this.setOfficialRecommend)
+    recommendStore.onState('officialRecommend', this.setOfficialRecommend);
+    playStore.onStates(['isPlaying', 'songDetail'], this.setPlayerInfo);
 
     recommendStore.dispatch('fetchPersonalizedList');
     recommendStore.dispatch('fetchRecommendMv');
@@ -68,6 +74,15 @@ Page({
       this.setData({
         stickyWidth: 0
       })
+    }
+  },
+
+  setPlayerInfo({ isPlaying, songDetail }: any) {
+    if(isPlaying !== undefined) {
+      this.setData({ isPlaying, animaState: isPlaying ? 'running' : 'paused' })
+    }
+    if(songDetail) {
+      this.setData({ songDetail })
     }
   },
 
@@ -103,6 +118,16 @@ Page({
       url: `/pages/player/player?id=${id}`
     });
   },
+  onPlayOrPauseTap() {
+    playStore.dispatch('changePlayStatusAction');
+  },
+  onTapPlayerBar() {
+    if(this.data.songDetail.id) {
+      wx.navigateTo({
+        url: `/pages/player/player?id=${this.data.songDetail.id}`
+      })
+    }
+  },
 
   async setMetaCat() {
     const res = await getMetaCat();
@@ -130,7 +155,8 @@ Page({
     recommendStore.offState('recommendMv', this.setRecommendMv);
     recommendStore.offState('recommendSongs', this.setRecommendSongs);
     recommendStore.offState('newRelease', this.setNewRelease);
-    recommendStore.offState('officialRecommend', this.setOfficialRecommend)
+    recommendStore.offState('officialRecommend', this.setOfficialRecommend);
+    playStore.offState('isPlaying', this.setPlayerInfo);
   },
 });
 
