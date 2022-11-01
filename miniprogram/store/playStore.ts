@@ -19,7 +19,9 @@ const playStore = new EventStore({
     mode: 0, // 0 列表循环 1 单曲循环 2 随机
     currentTime: 0,
     isPlaying: false,
-    isFirstPlay: true
+    isFirstPlay: true,
+    // mv播放信息
+    currentMvId: 0
   },
   actions: {
     playNewSongWithId(ctx: any, id: number) {

@@ -1,0 +1,41 @@
+<wxs src="../../utils/format.wxs" module="fmt"></wxs>
+
+<video src="{{url}}" class="full-width" referrer-policy="origin" />
+
+<scroll-view class="content" scroll-y>
+  <view class="info">
+    <view class="title">{{detail.name}}</view>
+    <view class="play-info">
+      <view class="play-count" wx:if="{{detail.playCount}}">{{fmt.formatCount(detail.playCount)}}次观看</view>
+      <view class="groups" wx:if="{{detail.videoGroup.length}}">
+        <block wx:for="{{detail.videoGroup}}" wx:key="id">
+          <view class="item">#{{item.name}}</view>
+        </block>
+      </view>
+    </view>
+    <view class="artist">
+      <image src="{{detail.artists[0].img1v1Url}}" class="image" />
+      <view class="capsule" wx:if="{{detail.artistName}}">歌手 | {{detail.artistName}}</view>
+      <view class="capsule" wx:if="{{detail.publishTime}}">发布时间 | {{detail.publishTime}}</view>
+    </view>
+  </view>
+
+  <view class="relative-text" wx:if="{{relativeMvlist.length}}">相关视频</view>
+  <view class="relative-videos">
+    <block wx:for="{{relativeMvlist}}" wx:key="vid">
+      <view class="item">
+        <view class="cover">
+          <image class="image" src="{{item.coverUrl}}" mode="" 	lazy-load />
+          <view class="duration">{{fmt.formatDuration(item.durationms)}}</view>
+        </view>
+        <view class="title">{{item.title}}</view>
+        <view class="other-info">
+          <view class="creator">{{item.creator[0].userName}}</view>
+          <view class="playcounts">· {{fmt.formatCount(item.playTime)}}次播放</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+
+

@@ -14,7 +14,7 @@ Component({
     onClickMore() {
       this.triggerEvent('click-more');
     },
-    onClickItem(event: WechatMiniprogram.BaseEvent) {      
+    onClickItem(event: WechatMiniprogram.BaseEvent) {
       this.triggerEvent('click-item', event.currentTarget.dataset.id);
     }
   },

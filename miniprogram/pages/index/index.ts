@@ -127,6 +127,13 @@ Page({
       })
     }
   },
+  onClickMvItem(event: WechatMiniprogram.CustomEvent) {
+    const id = event.detail;
+    playStore.setState('currentMvId', id);
+    wx.navigateTo({
+      url: `/pages/mv/mv?id=${id}`
+    })
+  },
 
   async setMetaCat() {
     const res = await getMetaCat();

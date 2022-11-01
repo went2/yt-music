@@ -1,0 +1,113 @@
+page {
+  padding: 0;
+  height: 100vh;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.content {
+  height: calc(100% - 225px);
+}
+
+.content .info {
+  padding: 0 15rpx;
+}
+
+.info .title {
+  margin-top: 15rpx;
+  font-size: 38rpx;
+  font-weight: 700;
+}
+
+.info .play-info {
+  margin-top: 10rpx;
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.play-info .groups {
+  margin-left: 20rpx;
+  display: flex;
+  align-items: center;
+  color: #333;
+  font-weight: 600;
+}
+
+.groups .item {
+  margin-right: 12rpx;
+}
+
+.info .artist {
+  margin-top: 10rpx;
+  display: flex;
+  align-items: center;
+}
+
+.info .artist .image {
+  border-radius: 50%;
+  width: 65rpx;
+  height: 65rpx;
+}
+
+.info .artist .capsule {
+  margin-left: 18rpx;
+  font-size: 24rpx;
+  background-color: #eee;
+  padding: 10rpx 15rpx;
+  border-radius: 40rpx;
+}
+
+.relative-text {
+  margin: 40rpx 0 20rpx 14rpx;
+  letter-spacing: 1rpx;
+  font-size: 34rpx;
+  color: #333;
+}
+
+.relative-videos .item {
+  padding-bottom: 20rpx;
+  box-shadow: 0 10rpx 10rpx #eee;
+}
+
+.relative-videos .cover {
+  margin-top: 20rpx;
+  position: relative;
+}
+
+.relative-videos .cover .image {
+  height: 200px;
+  width: 100%;
+}
+
+.relative-videos .cover .duration {
+  position: absolute;
+  bottom: 10rpx;
+  right: 10rpx;
+  background-color: #000;
+  color: #fff;
+  font-size: 22rpx;
+  padding: 6rpx 10rpx;
+  border-radius: 12rpx;
+}
+
+.relative-videos .title {
+  margin-left: 15rpx;
+  margin-top: 15rpx;
+  font-weight: 600;
+}
+
+.relative-videos .other-info {
+  margin-top: 8rpx;
+  margin-left: 15rpx;
+  display: flex;
+  color: #555;
+  font-size: 26rpx;
+}
+
+.relative-videos .other-info .playcounts {
+  margin-left: 12rpx;
+}

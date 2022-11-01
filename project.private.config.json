@@ -5,7 +5,7 @@
     "compileHotReLoad": false,
     "urlCheck": false
   },
-  "libVersion": "2.15.0",
+  "libVersion": "2.23.0",
   "condition": {
     "miniprogram": {
       "list": [
@@ -27,6 +27,13 @@
           "name": "歌曲播放页",
           "pathName": "pages/player/player",
           "query": "id=27808548",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "mv页面",
+          "pathName": "pages/mv/mv",
+          "query": "id=5436712",
           "launchMode": "default",
           "scene": null
         }

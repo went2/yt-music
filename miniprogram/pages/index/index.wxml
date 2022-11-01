@@ -35,7 +35,7 @@
   wx:if="{{videoList.length}}"
   titleText="推荐MV"
   listData="{{videoList}}"
-  bind:click-item="onClickItem" 
+  bind:click-item="onClickMvItem" 
 />
 
 <playlist-view
