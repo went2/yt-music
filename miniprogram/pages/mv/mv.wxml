@@ -23,7 +23,7 @@
   <view class="relative-text" wx:if="{{relativeMvlist.length}}">相关视频</view>
   <view class="relative-videos">
     <block wx:for="{{relativeMvlist}}" wx:key="vid">
-      <view class="item">
+      <view class="item" bind:tap="onClickOtherMvItem" data-id="{{item.vid}}">
         <view class="cover">
           <image class="image" src="{{item.coverUrl}}" mode="" 	lazy-load />
           <view class="duration">{{fmt.formatDuration(item.durationms)}}</view>

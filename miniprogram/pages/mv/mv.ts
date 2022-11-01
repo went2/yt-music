@@ -1,18 +1,29 @@
 import {getMvInfo , getMvUrl, getRelativeMv} from '../../service/modules/mv';
+import playStore from '../../store/playStore';
+
 Page({
   data: {
-    id: 0,
+    id: 0 as any,
     detail: {},
     url: '',
     relativeMvlist: []
   },
   onLoad(options) {
-    const id = Number(options.id);
+    const id = options.id;
     this.setData({ id });
 
     this.fetchMvDetail();
     this.fetchMvUrl();
     this.fetchRelativeMv();
+  },
+  // handlers
+  onClickOtherMvItem(event: WechatMiniprogram.BaseEvent) {
+    const id = event.currentTarget.dataset.id;
+    playStore.setState('currentMvId', id);
+    wx.navigateTo({
+      url: `/pages/mv/mv?id=${id}`
+    })
+    
   },
   fetchMvDetail() {
     getMvInfo(this.data.id).then((res: any) => {
