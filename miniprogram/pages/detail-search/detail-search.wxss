@@ -1,1 +1,20 @@
-/* pages/detail-search/detail-search.wxss */
+
+.hot-search .text {
+  color: #333;
+}
+
+.hot-search .list {
+  display: flex;
+  margin-top: 10rpx;
+  flex-wrap: wrap;
+}
+
+.hot-search .item {
+  color: #666;
+  border: 2rpx solid #aaa;
+  border-radius: 30rpx;
+  padding: 5rpx 12rpx;
+  margin: 7rpx;
+  font-size: 26rpx;
+}
+

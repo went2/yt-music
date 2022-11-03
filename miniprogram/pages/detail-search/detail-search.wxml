@@ -1,1 +1,24 @@
-<van-search></van-search>
+<van-search
+  placeholder="输入歌曲、专辑、歌手"
+  bind:change="onSearchChange"
+/>
+
+<view>
+  <view class="hot-search" wx:if="{{!isSearching}}">
+    <view class="text">热门搜索</view>
+    <view class="list">
+      <block wx:for="{{hotSearch}}" wx:key="first">
+        <view class="item">{{item.first}}</view>
+      </block>
+    </view>
+  </view>
+
+  <view class="suggest">
+    <block wx:for="{{suggestList}}" wx:key="keyword">
+      <view class="item">
+        {{item.keyword}}
+      </view>
+    </block>
+  </view>
+
+</view>

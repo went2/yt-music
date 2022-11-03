@@ -1,66 +1,56 @@
-// pages/detail-search/detail-search.ts
+import searchStore from '../../store/searchStore';
+import { getSuggestList } from '../../service/modules/search';
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    hotSearch: [],
+    isSearching: false,
+    suggestList: [],
+    resultList: [],
+    keyword: ''
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad() {
+    // 订阅store
+    searchStore.onState('hotSearch', this.setHotSearch);
+    searchStore.dispatch('fetchHotSearchList');
+  },
+  // event handlers
+  onSearchChange(event: WechatMiniprogram.CustomEvent) {
+    const keywords = event.detail as any;
+    if(keywords !== '') {
+      this.setData({ isSearching: true });
+      getSuggestList(keywords).then((res: any) => {
+        const result = res.result.allMatch
+        console.log(result);
+        
+        this.setData({ 
+          suggestList: result || []
+         });
+      });
+    } else {
+      this.setData({ suggestList: [], isSearching: false})
+    }
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  // utils
+  flatSuggestList(obj: any): Array<{name: string, type: string}> {
+    const keys = obj.order as string[];
+    const result = [] as Array<{name: string, type: string}>;
+    keys.forEach((key) => {
+      let item = { name: obj[key] as string, type: key };
+      result.push(item);
+    });
+    return result;
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
 
+  // callbacks
+  setHotSearch(hotSearch: any) {
+    this.setData({ hotSearch });
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+    searchStore.offState('hotSearch', this.setHotSearch);
   }
 })

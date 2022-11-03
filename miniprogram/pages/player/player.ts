@@ -27,7 +27,7 @@ Page({
     isSliding: false,
     lyricScrollTop: 0,
   },
-  onLoad(options) {
+  onLoad(options: any) {
     const id = Number(options.id);
     const appData =  app.globalData;
     this.setData({ swiperHeight: appData.screenHeight - appData.statusBarHeight - appData.MENU_BAR_HEIGHT });
