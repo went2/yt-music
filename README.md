@@ -1,11 +1,24 @@
 # 说明
 
-仿照 Youtube Music App 写的小程序，目的是熟悉微信小程序开发方式。
+仿照 Youtube Music 安卓版的界面写的小程序，使用了 [网易云音乐 NodeJS 版API](https://neteasecloudmusicapi.vercel.app/) 项目部署得到的接口。
 
-- Light Mode
-- 实现了几个表面的page：
-  - 首页
+实现了几类关键页面：
+  - 首页的分模块列表页
   - 搜索页
+    - 搜索建议
+    - 热门搜索
   - 歌曲播放页
-  - 专辑详情页
-- 从 [网易云音乐NodeJS 版API](https://neteasecloudmusicapi.vercel.app/) 项目中得到了接口自由，啊。
+    - 播放模式
+    - 歌词匹配
+  - 列表页/详情页
+
+总的来说，开发微信小程序的写法和写 vue 的 options api 类似，你要把数据和方法分门别类地写到官方给你提供的选项中。
+  - 微信小程序使用了和 vue、react 一致的方式处理模板数据绑定——使用 Mustache 语法，在双大括号内写 JavaScript 表达式；
+  - 对于状态管理，本项目使用了 coderwhy 授课时用的 [EventStore](https://github.com/coderwhy/hy-event-store)，并且在开发时尽量采用这样方式管理状态：Page管理所有状态与事件响应，Page 把数据通过子组件的properties传递给子组件，在子组件中发生的事件（mostly 点击事件），不在自己内部处理，而向外 `triggerEvent`，在 Page 中处理，子组件只负责接受数据并显示。页面和组件只管理偏重“显示”的状态，抽象的、可重用的、业务逻辑状态都抽离到 `EventStore` 的实例中管理。
+  - 多数的时间花在页面布局、写 wxss 上，对我来说写这个项目的意义在于，实现一个页面效果，不必占用太多大脑的思考，而将思考更多放到优化方面（如状态的抽取、回调事件的防抖、节流处理等）
+  - 微信要求 API 服务器的域名必须通过备案，开发时所用的 api 托管在 Vercel 上，暂时无法备案。
+
+## 页面演示
+
+
+
