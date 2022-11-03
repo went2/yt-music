@@ -25,6 +25,8 @@ const playStore = new EventStore({
   },
   actions: {
     playNewSongWithId(ctx: any, id: number) {
+      // console.log('播放指定id歌曲');
+      
       ctx.id = id;
       if(ctx.songDetail.id !== id) {
         ctx.songDetail = {};

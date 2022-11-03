@@ -12,3 +12,10 @@ export function getSuggestList(keywords: string) {
     data: { keywords, type: 'mobile' }
   });
 }
+
+export function getSearchedSongs(keywords: string) {
+  return req.get({
+    url: '/cloudsearch',
+    data: { keywords }
+  })
+}

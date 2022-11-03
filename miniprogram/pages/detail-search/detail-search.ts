@@ -1,17 +1,26 @@
 import searchStore from '../../store/searchStore';
+import playStore from '../../store/playStore';
 import { getSuggestList } from '../../service/modules/search';
 import { debounce } from 'underscore';
 
 Page({
   behaviors: [ Behavior({
     observers: {
-      searchValue(newValue) {
+      inputValue(newValue) {
         if(newValue) {
           this.setData({ isSearching: true });
           //@ts-ignore
           this.fetchSuggestList();
         } else {
           this.setData({ suggestList: [], isSearching: false })
+        }
+      },
+      searchValue(newValue) {
+        // console.log('searchValue change', newValue);
+        if(newValue !== '') {
+          searchStore.dispatch('fetchSearchedSongs', newValue);
+        } else {
+          searchStore.setState('songList', []);
         }
       }
     }
@@ -20,25 +29,52 @@ Page({
     hotSearch: [],
     isSearching: false,
     suggestList: [],
-    resultList: [],
-    searchValue: ''
+    songList: [],
+    searchValue: '',
+    inputValue: ''
   },
   onLoad() {
     // 订阅store
     searchStore.onState('hotSearch', this.setHotSearch);
+    searchStore.onState('songList', this.setSongList);
+
     searchStore.dispatch('fetchHotSearchList');
   },
   // event handlers
   onSearchChange: debounce(function(event: WechatMiniprogram.CustomEvent) {
-    const keywords = event.detail as any;
+    const keyword = event.detail as any;
     //@ts-ignore
-    this.setData({ searchValue: keywords });
+    this.setData({ inputValue: keyword });
   }, 200),
+  onSearch(event: WechatMiniprogram.CustomEvent){
+    const keywords = event.detail;
+    // @ts-ignore
+    this.setData({ searchValue: keywords });
+  },
+
+  onTapSearchItem(event: WechatMiniprogram.BaseEvent) {
+    const keyword = event.currentTarget.dataset.keyword as string;
+    this.setData({ searchValue: keyword });
+  },
+  onSeachClear() {
+    this.setData({ suggestList: [], searchValue: '' });
+  },
+  onTapSong(event: WechatMiniprogram.BaseEvent) {
+    const songList = searchStore.state.songList;
+    const id = event.currentTarget.dataset.id;
+    const index = songList.findIndex((item: any) => {
+      return item.id === id;
+    })
+    playStore.setState('playSongList', songList);
+    playStore.setState('playSongIndex', index);
+    wx.navigateTo({
+      url: `/pages/player/player?id=${id}`
+    })
+  },
 
   fetchSuggestList() {
-    getSuggestList(this.data.searchValue).then((res: any) => {
+    getSuggestList(this.data.inputValue).then((res: any) => {
       const result = res.result.allMatch
-      console.log(result);
       this.setData({ 
         suggestList: result || []
        });
@@ -56,13 +92,16 @@ Page({
     return result;
   },
 
-
   // callbacks
   setHotSearch(hotSearch: any) {
     this.setData({ hotSearch });
   },
+  setSongList(songList: any) {
+    this.setData({ songList });
+  },
 
   onUnload() {
     searchStore.offState('hotSearch', this.setHotSearch);
+    searchStore.offState('songList', this.setSongList);
   }
 })

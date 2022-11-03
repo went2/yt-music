@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "section-title": "../../components/section-title/section-title"
+  },
   "navigationBarTitleText": "搜索歌曲"
 }

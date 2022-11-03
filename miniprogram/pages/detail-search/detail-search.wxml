@@ -1,27 +1,58 @@
+<wxs src="../../utils/format.wxs" module="fmt"></wxs>
+
 <van-search
-  searchValue="{{searchValue}}"
+  value="{{searchValue}}"
   placeholder="输入歌曲、专辑、歌手"
   bind:change="onSearchChange"
+  bind:clear="onSeachClear"
+  bind:search="onSearch"
 />
 
-<view>
+<view wx:if="{{!searchValue}}">
   <view class="hot-search" wx:if="{{ !isSearching }}">
     <view class="text">热门搜索</view>
     <view class="list">
       <block wx:for="{{hotSearch}}" wx:key="first">
-        <view class="item">{{item.first}}</view>
+        <view
+          class="item"
+          bind:tap="onTapSearchItem"
+          data-keyword="{{item.first}}"
+        >{{item.first}}</view>
       </block>
     </view>
   </view>
 
-  <view class="suggest">
+  <view class="suggest" wx:if="{{ suggestList.length }}">
     <block wx:for="{{suggestList}}" wx:key="keyword">
-    <view class="item">
+    <view class="item" bind:tap="onTapSearchItem" data-keyword="{{item.keyword}}">
       <image class="image" src="../../assets/images/icons/search/search-30.png" />
       <view class="text">{{item.keyword}}</view>
       <image class="image right" src="../../assets/images/icons/search/up-left-48.png" />
     </view>
 
+    </block>
+  </view>
+</view>
+
+<view class="songs" wx:if="{{songList.length}}">
+  <section-title
+    titleText="歌曲"
+    isShowMore
+  />
+  <view class="list">
+    <block wx:for="{{songList}}" wx:key="id">
+      <view class="item" bind:tap="onTapSong" data-id="{{item.id}}">
+        <view class="left">
+          <image class="image" src="{{item.al.picUrl}}" />
+        </view>
+        <view class="middle">
+          <view>{{item.name}}</view>
+          <view class="info">
+            {{ item.ar[0].name }} · {{ item.al.name }} · {{fmt.formatDuration(item.dt)}} 
+          </view>
+        </view>
+        <view class="right"></view>
+      </view>
     </block>
   </view>
 </view>
