@@ -18,3 +18,29 @@
   font-size: 26rpx;
 }
 
+.suggest {
+  margin-top: 20rpx;
+  padding: 10rpx 30rpx;
+}
+
+.suggest .item {
+  display: flex;
+  align-items: center;
+  margin: 18rpx 0;
+  color: #666;
+}
+
+.suggest .item .text {
+  margin-left: 20rpx;
+  flex: 1;
+}
+
+.suggest .item .image {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.suggest .item .right {
+  position: relative;
+  right: 30rpx;
+}

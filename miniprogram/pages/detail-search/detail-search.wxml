@@ -1,10 +1,11 @@
 <van-search
+  searchValue="{{searchValue}}"
   placeholder="输入歌曲、专辑、歌手"
   bind:change="onSearchChange"
 />
 
 <view>
-  <view class="hot-search" wx:if="{{!isSearching}}">
+  <view class="hot-search" wx:if="{{ !isSearching }}">
     <view class="text">热门搜索</view>
     <view class="list">
       <block wx:for="{{hotSearch}}" wx:key="first">
@@ -15,10 +16,12 @@
 
   <view class="suggest">
     <block wx:for="{{suggestList}}" wx:key="keyword">
-      <view class="item">
-        {{item.keyword}}
-      </view>
+    <view class="item">
+      <image class="image" src="../../assets/images/icons/search/search-30.png" />
+      <view class="text">{{item.keyword}}</view>
+      <image class="image right" src="../../assets/images/icons/search/up-left-48.png" />
+    </view>
+
     </block>
   </view>
-
 </view>

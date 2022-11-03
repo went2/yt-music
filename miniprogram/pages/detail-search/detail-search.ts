@@ -1,13 +1,27 @@
 import searchStore from '../../store/searchStore';
 import { getSuggestList } from '../../service/modules/search';
+import { debounce } from 'underscore';
 
 Page({
+  behaviors: [ Behavior({
+    observers: {
+      searchValue(newValue) {
+        if(newValue) {
+          this.setData({ isSearching: true });
+          //@ts-ignore
+          this.fetchSuggestList();
+        } else {
+          this.setData({ suggestList: [], isSearching: false })
+        }
+      }
+    }
+  }) ],
   data: {
     hotSearch: [],
     isSearching: false,
     suggestList: [],
     resultList: [],
-    keyword: ''
+    searchValue: ''
   },
   onLoad() {
     // 订阅store
@@ -15,22 +29,20 @@ Page({
     searchStore.dispatch('fetchHotSearchList');
   },
   // event handlers
-  onSearchChange(event: WechatMiniprogram.CustomEvent) {
+  onSearchChange: debounce(function(event: WechatMiniprogram.CustomEvent) {
     const keywords = event.detail as any;
-    if(keywords !== '') {
-      this.setData({ isSearching: true });
-      getSuggestList(keywords).then((res: any) => {
-        const result = res.result.allMatch
-        console.log(result);
-        
-        this.setData({ 
-          suggestList: result || []
-         });
-      });
-    } else {
-      this.setData({ suggestList: [], isSearching: false})
-    }
+    //@ts-ignore
+    this.setData({ searchValue: keywords });
+  }, 200),
 
+  fetchSuggestList() {
+    getSuggestList(this.data.searchValue).then((res: any) => {
+      const result = res.result.allMatch
+      console.log(result);
+      this.setData({ 
+        suggestList: result || []
+       });
+    });
   },
 
   // utils
