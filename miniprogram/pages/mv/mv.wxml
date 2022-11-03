@@ -1,6 +1,6 @@
 <wxs src="../../utils/format.wxs" module="fmt"></wxs>
 
-<video src="{{url}}" class="full-width" referrer-policy="origin" />
+<video src="{{url}}" class="full-width" autoplay referrer-policy="origin" />
 
 <scroll-view class="content" scroll-y>
   <view class="info">

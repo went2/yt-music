@@ -58,7 +58,7 @@ Page({
     }).exec();
   },
 
-  onPageScroll(option) {
+  onPageScroll(option: any) {
     // 监测cat-list滚动到顶部：自身top - 状态栏高度
     const top = this.data.cateTop - app.globalData.statusBarHeight;
     setStickyWidthThrottled(option.scrollTop, this.setStickyWidth, top);
@@ -87,7 +87,9 @@ Page({
 
   // event handlers
   onSeachTap() {
-    console.log('home: click search');
+    wx.navigateTo({
+      url: '/pages/detail-search/detail-search'
+    })
   },
   onClickCat(event: WechatMiniprogram.CustomEvent) {
     // detail 是catList中的index
