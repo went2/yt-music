@@ -1,16 +1,17 @@
 import detailStore from '../../store/detailStore';
-
 Page({
   data: {
     id: '',
     detail: {}
   },
-  onLoad(options) {
-    this.setData({ id: options.id });
-
+  onLoad(options: any) {
+    const id = options.id;
+    this.setData({ id });
     detailStore.onState('playlistDetail', this.setPlaylistDetail);
-
-    detailStore.dispatch('fetchPlaylistDetail', this.data.id);
+    if(id !== detailStore.state.id) {
+      this.setData({ detail: {} });
+      detailStore.dispatch('fetchPlaylistDetail', this.data.id);
+    }
   },
   onTapLeft(){
     wx.navigateBack();

@@ -167,5 +167,4 @@ Page({
     playStore.offState('isPlaying', this.setPlayerInfo);
   },
 });
-
 export {};

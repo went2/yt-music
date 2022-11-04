@@ -21,6 +21,21 @@
 
 ## 页面演示
 
+### 1. 首页
+![index](./screenshots/1.index.gif)
+
+### 2. 搜索页
+![detail-search](./screenshots/1.detail-search.gif)
+
+### 3. 播放页
+![player](./screenshots/3.player.gif)
+
+### 4. 歌单详情页
+![detail-playlist](./screenshots/4.detail-playlist.gif)
+
+### 5. 视频详情页
+![detail-mv](./screenshots/5.detail-mv.gif)
+
 ## 长远价值
 
 写这个项目最初是为了经历微信小程序的开发，跨过从0到1的步骤。项目的开发完结，之后如果一段时间不写小程序代码，势必手生脑慢，做这件事有什么稍微久远的价值？
@@ -34,3 +49,5 @@
   - 一些节省性能的措施？（滚动监听的回调做节流，搜索栏的change事件回调做防抖等）？
 
 没有处理好的地方是引入了 Typescript，在提前使用后端返回的数据时，要保证 `tsc` 不报因为类型不同无法赋值的问题，就得给每种 api 接口数据定好 interface，这会花费更多时间，开发过程中我将它当作 js 使用，遇到编译不过的情况就设 any，这样用 Typescript 不好，下次选它会更谨慎一点。
+
+此外，由于请求数据有延迟，有些页面初次加载时有1-3秒的空白，合适的做法是给这些页面加上骨架屏。

@@ -6,16 +6,18 @@ import { debounce } from 'underscore';
 Page({
   behaviors: [ Behavior({
     observers: {
-      inputValue(newValue) {
+      inputValue(newValue: any) {
         if(newValue) {
+          //@ts-ignore
           this.setData({ isSearching: true });
           //@ts-ignore
           this.fetchSuggestList();
         } else {
+          //@ts-ignore
           this.setData({ suggestList: [], isSearching: false })
         }
       },
-      searchValue(newValue) {
+      searchValue(newValue: any) {
         // console.log('searchValue change', newValue);
         if(newValue !== '') {
           searchStore.dispatch('fetchSearchedSongs', newValue);
@@ -103,5 +105,6 @@ Page({
   onUnload() {
     searchStore.offState('hotSearch', this.setHotSearch);
     searchStore.offState('songList', this.setSongList);
+    searchStore.setState('songList', []);
   }
 })
