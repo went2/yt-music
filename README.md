@@ -25,16 +25,16 @@
 <img src="./screenshots/1.index.gif" width="200" alt="index page">
 
 ### 2. 搜索页
-![detail-search](./screenshots/2.detail-search.gif)
+<img src="./screenshots/2.detail-search.gif" width="200" alt="detail-search">
 
 ### 3. 播放页
-![player](./screenshots/3.player.gif)
+<img src="./screenshots/3.player.gif" width="200" alt="player">
 
 ### 4. 歌单详情页
-![detail-playlist](./screenshots/4.detail-playlist.gif)
+<img src="./screenshots/4.detail-playlist.gif" width="200" alt="detail-playlist">
 
 ### 5. 视频详情页
-![detail-mv](./screenshots/5.detail-mv.gif)
+<img src="./screenshots/5.detail-mv.gif" width="200" alt="detail-mv">
 
 ## 长远价值
 
