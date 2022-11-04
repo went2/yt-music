@@ -22,10 +22,10 @@
 ## 页面演示
 
 ### 1. 首页
-![index](./screenshots/1.index.gif)
+<img src="./screenshots/1.index.gif" width="200" alt="index page">
 
 ### 2. 搜索页
-![detail-search](./screenshots/1.detail-search.gif)
+![detail-search](./screenshots/2.detail-search.gif)
 
 ### 3. 播放页
 ![player](./screenshots/3.player.gif)
